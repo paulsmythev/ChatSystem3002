@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Router } from '@angular/router';
-
 import { DatabaseService } from "../../services/database.service";
-
 import { Authentication } from 'src/app/classes/authentication/authentication';
 
 @Component({

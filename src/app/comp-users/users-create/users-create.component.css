@@ -1,0 +1,84 @@
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+  }
+  .card {
+    width: 500px; /* Modded Here */
+    height: 320px; /* Modded Here */
+    background-color: #fff;
+    background: linear-gradient(#f8f8f8, #fff);
+    box-shadow: 0 8px 16px -8px rgba(0,0,0,0.4);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    margin-top: 15px; /* Modded Here */
+  }
+  .card h1 {
+    text-align: center;
+    color: #05386B;
+  }
+  .card .additional {
+    position: absolute;
+    width: 150px;
+    height: 100%;
+    background: linear-gradient(#92bCa6, #05386B);
+    transition: width 0.4s;
+    overflow: hidden;
+    z-index: 2;
+  }
+  .card .additional .user-card .level,
+  .card .additional .user-card .points { /* Modded Here */
+    top: 45px; /* Modded Here */
+    color: #fff;
+    font-size: 26px;
+    font-weight: bold;
+    background: rgba(0,0,0,0.15);
+    padding: 0.125rem 0.75rem;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+  .card .additional .user-card .points {
+    top: 85%;
+  }
+  .card .additional .stats {
+    font-size: 2rem;
+    display: flex;
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    top: auto;
+    color: #fff;
+  }
+  .card .general {
+    width: 400px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    box-sizing: border-box;
+    padding: 1rem;
+    padding-top: 15px;
+    padding-left: 60px; /* Modded Here */
+  }
+  .card .general .more {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    font-size: 0.9em;
+  }
+  .img-thumbnail{
+      width:110px;
+      height:110px;
+      margin-top: 25px; /* Modded Here */
+  }
+.feedback {
+    padding-top: 5px;
+}
+#filemove {
+    margin-top: -35px;
+    padding-left: 60px;
+}
