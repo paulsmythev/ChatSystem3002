@@ -1,1 +1,54 @@
-<p>login works!</p>
+<div class="container d-flex justify-content-center">
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-10"><div id="pageTitle"></div></div>
+      <div class="col-1"></div>
+    </div>
+  </div>
+  
+  <div class="container d-flex justify-content-center">
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-10">
+  
+      <!------ Card Start -------->
+      <div class="card green center">
+          <div class="additional">
+            <div class="user-card">
+              <div class="level center">
+                Login
+              </div>
+            </div>
+          </div>
+          <div class="general">
+            <!------ Content Start -------->
+              <form (submit)="userLogin($event)">
+                  <div class="input-group mb-3">
+                      <div class="input-group-append">
+                        <span class="input-group-text"><img src="./assets/images/728953_envelope_email_message_letter_send_icon.png" width="28px" height="28px" alt="Email Login"/><i class="fas fa-user"></i></span>
+                      </div>
+                      <input type="text" name="inputAccountId" class="form-control input_user" value="" placeholder="Username" [(ngModel)]="inputIdentification">
+                      </div>
+                      <div class="input-group mb-2">
+                      <div class="input-group-append">
+                      <span class="input-group-text"><img src="./assets/images/728974_locked_guard_lock_private_protect_icon.png" width="28px" height="28px" alt="Email Login"/><i class="fas fa-key"></i></span>
+                      </div>
+                      <input type="password" name="inputPassword" class="form-control input_pass" value="" placeholder="Password" [(ngModel)]="inputPassword">
+                      </div>
+                      <div class="form-group">
+                      </div>
+                      <div class="d-flex justify-content-center mt-3 login_container">
+                        <button type="submit" name="button" class="btn btn-secondary">Login</button>
+                    </div>
+              </form>
+              <div class="d-flex justify-content-center feedback" id="good"></div>
+              <div class="d-flex justify-content-center feedback" id="bad"></div>
+            <!------ Content End ---------->
+          </div>
+        </div>
+      <!------ Card End ---------->
+  
+      </div>
+      <div class="col-1"></div>
+    </div>
+  </div>

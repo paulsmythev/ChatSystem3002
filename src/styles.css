@@ -1,1 +1,47 @@
 /* You can add global styles to this file, and also import other style files */
+/* Page Header and Menu */
+body {
+    background-color: #E6E2DD;
+    color: #1D2228;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+#header {
+    color: #1D2228;
+    padding: 10px;
+    border-bottom: 4px solid #05386B;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+#subMenu {
+    border-bottom: 4px solid #05386B;
+    background-color: #f8f9fa;
+}
+#subMenuEndLeft {
+    border-left: 4px solid #05386B;
+    background-color: #f8f9fa;
+}
+#subMenuEndRight {
+    border-right: 4px solid #05386B;
+    background-color: #f8f9fa;
+}
+#good {
+    color: green;
+    font-weight: 600;
+    font-size: large;
+}
+#bad {
+    color: red;
+    font-weight: 600;
+    font-size: large;
+}
+/* Centre all components content */
+#pageTitle {
+    font-family: Helvetica, sans-serif;
+    color: #05386B;
+    font-weight: 600;
+    font-size: xx-large;
+}
+/* Card Stuff */
