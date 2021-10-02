@@ -26,6 +26,13 @@ MongoClient.connect(url, {maxPoolSize:10, useNewUrlParser: true, useUnifiedTopol
     require("./routes/users-read.js")(db, app);
     require("./routes/users-delete.js")(db, app);
     require("./routes/users-update.js")(db, app);
+
+    require("./routes/groups-read.js")(db, app);
+    
+    require("./routes/channels-create.js")(db, app);
+    require("./routes/channels-read.js")(db, app);
+    require("./routes/channels-delete.js")(db, app);
+    require("./routes/channels-current.js")(db, app);
     
     require("./listen.js")(http);
 });

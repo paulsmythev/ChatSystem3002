@@ -1,0 +1,67 @@
+<div *ngIf="authUserMenu">
+	<!------ Submenu Starts Here ---------->
+	<nav class="navbar-expand-sm">
+		<ul class="navbar-nav justify-content-center">
+	  
+			<div id="subMenuEndLeft"></div>
+	  
+			<li class="nav-item text-center" id="groupeditLink" id="subMenu">
+				<a class="nav-link text-dark" href="/channels/create">Create Channels</a>
+			</li>
+	  
+			<li class="nav-item" id="groupnewLink" id="subMenu">
+				<a class="nav-link text-dark" href="/channels/current">Current Channels</a>
+			</li>
+	  
+			<div id="subMenuEndRight"></div>
+		</ul>
+	</nav>
+</div>
+
+<div class="container d-flex justify-content-center" id="paddingup">
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+
+      <div class="d-flex justify-content-center feedback" id="good"></div>
+      <div class="d-flex justify-content-center feedback" id="bad"></div>
+
+      <div *ngFor="let channelsList of channels">
+        <!------ Card Start -------->
+        <div class="text-center" id="groupshow">
+          <div class="card green">
+            <div class="additional">
+            <div class="user-card">
+            <div class="points center">
+              <img src="assets/images/megaphone_speaker_icon.png" alt="{{channelsList.name}} profile Picture" width="32px" height="32px">[Group Name]+
+            </div>
+              <img src="assets/images/channelspics/{{channelsList.groupPicture_id}}" class="img-fluid d-block mx-auto rounded-circle img-thumbnail mb-4">
+            </div>
+            <div class="points center" id="pushdown">
+              Created By:<br><b>{{channelsList.createdBy_id | uppercase}}</b>
+            </div>
+            </div>
+            <div class="general"><br>
+              <h1>{{channelsList.name | uppercase}}</h1>
+              <p>Description:<br>{{channelsList.description}}</p>
+              <p>Parent Group: {{channelsList.group_id}}</p>
+
+              <div class="d-flex justify-content-center mt-3 login_container">
+                <button type="submit" name="button" class="btn btn-secondary" (click)="chatRoom(channelsList._id)">Chat Room</button>
+              </div>
+
+              <div class="d-flex justify-content-center mt-3 login_container">
+                <button type="submit" name="button" class="btn btn-secondary" (click)="leaveGroup(channelsList._id)">Delete Channel</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div id="paddingdown"></div>
+        <!------ Card End ---------->
+      </div>
+
+    </div>
+    <div class="col-1"></div>
+  </div>
+</div>
