@@ -14,9 +14,17 @@ export class UsersReadComponent implements OnInit {
 
   userRoleChange:string = "";
 
+  authUserStorage: any = {};
+
+  promoteLevel:boolean = false;
+
   constructor(private router: Router, private dbservices:DatabaseService) { }
 
   ngOnInit(): void {
+
+    //check user permissions
+    this.pagePermissions();
+
     this.dbservices.usersRead().subscribe((data)=> {
       this.users = data;
       
@@ -51,6 +59,33 @@ export class UsersReadComponent implements OnInit {
         this.users.shift();
       }
     });
+
+  }
+
+  pagePermissions() {
+    //read in local storage for auth user, if not there redirec to login page
+    var authUserFile = localStorage.getItem("authUser"); 
+    if (authUserFile) {
+      this.authUserStorage = JSON.parse(authUserFile);
+
+    } else {
+      this.router.navigateByUrl("/login");
+    }
+
+    if (this.authUserStorage.role == "Group Assistant" || this.authUserStorage.role == "User") {
+      this.router.navigateByUrl("/users/current");
+
+    }
+
+    //allow to promote user to super admin
+    if (this.authUserStorage.role == "Super Administrator") {
+      this.promoteLevel = true;
+
+    } else if (this.authUserStorage.role == "Group Administrator") {
+      this.promoteLevel = false;
+
+    }
+
 
   }
 

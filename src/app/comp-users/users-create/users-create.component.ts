@@ -18,9 +18,15 @@ export class UsersCreateComponent implements OnInit {
 
   newUser:User;
 
+  authUserStorage: any = {};
+
   constructor(private router: Router, private dbservices:DatabaseService) { }
 
   ngOnInit(): void {
+
+    //check user permissions
+    this.pagePermissions();
+
     //clear error handling
     let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
     error.innerText = "";
@@ -56,6 +62,23 @@ export class UsersCreateComponent implements OnInit {
     
     }
   
+  }
+
+  pagePermissions() {
+    //read in local storage for auth user, if not there redirec to login page
+    var authUserFile = localStorage.getItem("authUser"); 
+    if (authUserFile) {
+      this.authUserStorage = JSON.parse(authUserFile);
+
+    } else {
+      this.router.navigateByUrl("/login");
+    }
+
+    if (this.authUserStorage.role == "Group Assistant" || this.authUserStorage.role == "User") {
+      this.router.navigateByUrl("/users/current");
+
+    }
+
   }
 
 }

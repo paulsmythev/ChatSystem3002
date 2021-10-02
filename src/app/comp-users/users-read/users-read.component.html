@@ -41,10 +41,17 @@
                 <div class="form-group">
                   <label for="exampleFormControlSelect1">Promote User</label>
                   <select class="form-control" id="dropSize" [(ngModel)]="userRoleChange">
-                    <option>Super Administrator</option>
-                    <option>Group Administrator</option>
-                    <option>Group Assistant</option>
-                    <option>User</option>
+                    <div *ngIf="promoteLevel;then option1 else option2"></div>
+                      <ng-template #option1>
+                        <option>Super Administrator</option>
+                        <option>Group Administrator</option>
+                        <option>Group Assistant</option>
+                        <option>User</option>
+                      </ng-template>
+                      <ng-template #option2>
+                        <option>Group Assistant</option>
+                        <option>User</option>
+                      </ng-template>
                   </select>
 
                   <div class="d-flex justify-content-center mt-3 login_container">

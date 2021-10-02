@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users-current',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersCurrentComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   authUserStorage: any = {};
+  authUserMenu:boolean = false;
 
   username:string = "";
   email:string = "";
@@ -17,6 +19,10 @@ export class UsersCurrentComponent implements OnInit {
   profilepicture:string = "";
 
   ngOnInit(): void {
+
+    //check user permissions
+    this.pagePermissions();
+
     //fetches details from local strage
     var authUserFile = localStorage.getItem("authUser"); 
     if (authUserFile) {
@@ -29,6 +35,26 @@ export class UsersCurrentComponent implements OnInit {
     this.role = this.authUserStorage.role;
     this.profilepicture = this.authUserStorage.profilepicture;
     
+  }
+
+  pagePermissions() {
+    //read in local storage for auth user, if not there redirec to login page
+    var authUserFile = localStorage.getItem("authUser"); 
+    if (authUserFile) {
+      this.authUserStorage = JSON.parse(authUserFile);
+
+    } else {
+      this.router.navigateByUrl("/login");
+    }
+
+    if (this.authUserStorage.role == "Super Administrator" || this.authUserStorage.role == "Group Administrator") {
+      this.authUserMenu = true;
+
+    } else {
+      this.authUserMenu = false;
+
+    }
+
   }
 
 }
