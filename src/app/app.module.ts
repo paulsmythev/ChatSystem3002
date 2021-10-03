@@ -14,6 +14,10 @@ import { UsersCurrentComponent } from './comp-users/users-current/users-current.
 import { ChannelsReadComponent } from './comp-channels/channels-read/channels-read.component';
 import { ChannelsCreateComponent } from './comp-channels/channels-create/channels-create.component';
 import { ChannelsCurrentComponent } from './comp-channels/channels-current/channels-current.component';
+import { GroupsReadComponent } from './comp-groups/groups-read/groups-read.component';
+import { GroupsCreateComponent } from './comp-groups/groups-create/groups-create.component';
+import { GroupsCurrentComponent } from './comp-groups/groups-current/groups-current.component';
+import { GroupsAssignedComponent } from './comp-groups/groups-assigned/groups-assigned.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,11 @@ import { ChannelsCurrentComponent } from './comp-channels/channels-current/chann
     UsersCurrentComponent,
     ChannelsReadComponent,
     ChannelsCreateComponent,
-    ChannelsCurrentComponent
+    ChannelsCurrentComponent,
+    GroupsReadComponent,
+    GroupsCreateComponent,
+    GroupsCurrentComponent,
+    GroupsAssignedComponent
   ],
   imports: [
     BrowserModule,
