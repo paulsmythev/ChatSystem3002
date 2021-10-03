@@ -1,1 +1,65 @@
-<p>groups-assigned works!</p>
+<!------ Submenu Starts Here ---------->
+<nav class="navbar-expand-sm">
+    <ul class="navbar-nav justify-content-center">
+  
+        <div id="subMenuEndLeft"></div>
+  
+        <li class="nav-item text-center" id="groupeditLink" id="subMenu">
+            <a class="nav-link text-dark" href="/groups/create">Create Groups</a>
+        </li>
+  
+        <li class="nav-item" id="groupnewLink" id="subMenu">
+            <a class="nav-link text-dark" href="/groups/assigned">Assign Groups</a>
+        </li>
+
+        <li class="nav-item" id="groupnewLink" id="subMenu">
+            <a class="nav-link text-dark" href="/groups/current">Current Groups</a>
+        </li>
+  
+        <div id="subMenuEndRight"></div>
+    </ul>
+</nav>
+
+<div class="container d-flex justify-content-center" id="paddingup">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+
+            <div class="d-flex justify-content-center feedback" id="authError"></div>
+
+            <div class="text-center">
+                <div class="card green">
+                  <div class="additional">
+                    <div class="user-card">
+                    </div>
+                  </div>
+
+                <div class="general"><br>
+                <h3>Add Users to Group</h3>
+
+                <label for="exampleFormControlSelect1">Select Group</label>
+                <select class="form-select" aria-label="Default select example" [(ngModel)]="inputGroup_id">
+                    <option *ngFor="let groupslist of groups" value="{{groupslist._id}}">{{groupslist.name}}</option>
+                </select>
+                <br>
+                <label for="exampleFormControlSelect1">Select User</label>
+                <select class="form-select" aria-label="Default select example" [(ngModel)]="inputUser_id">
+                    <option *ngFor="let userslist of users" value="{{userslist._id}}">{{userslist.username}}</option>
+                </select>
+                        
+                <div class="d-flex justify-content-center mt-3 login_container">
+                    <button type="submit" name="button" class="btn btn-secondary" (click)="attachUser()">Create</button>
+                </div>
+
+                
+                <div id="good"></div>
+                <div id="bad"></div>
+
+                  </div>
+                </div>
+            </div>
+        
+        </div>
+        <div class="col-1"></div>
+      </div>
+</div>

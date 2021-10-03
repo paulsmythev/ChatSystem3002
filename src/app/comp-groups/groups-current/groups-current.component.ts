@@ -10,6 +10,11 @@ export class GroupsCurrentComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    //check user permissions
+    this.pagePermissions();
+  }
+
+  pagePermissions() {
   }
 
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Users } from "../../classes/users/users";
+import { DatabaseService } from "../../services/database.service";
 
 @Component({
   selector: 'app-users-current',
@@ -8,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class UsersCurrentComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private dbservices:DatabaseService) { }
 
   authUserStorage: any = {};
   authUserMenu:boolean = false;
@@ -23,38 +25,20 @@ export class UsersCurrentComponent implements OnInit {
     //check user permissions
     this.pagePermissions();
 
-    //fetches details from local strage
-    var authUserFile = localStorage.getItem("authUser"); 
-    if (authUserFile) {
-      this.authUserStorage = JSON.parse(authUserFile);
-
-    }
-
-    this.username = this.authUserStorage.username;
-    this.email = this.authUserStorage.email;
-    this.role = this.authUserStorage.role;
-    this.profilepicture = this.authUserStorage.profilepicture;
+    this.pullAuthuser();
     
   }
 
+  pullAuthuser() {
+    this.dbservices.authRead().subscribe((data)=>{
+      this.username = data[0].username;
+      this.email = data[0].email;
+      this.role = data[0].role;
+      this.profilepicture = data[0].profilepicture;
+    });
+  }
+
   pagePermissions() {
-    //read in local storage for auth user, if not there redirec to login page
-    var authUserFile = localStorage.getItem("authUser"); 
-    if (authUserFile) {
-      this.authUserStorage = JSON.parse(authUserFile);
-
-    } else {
-      this.router.navigateByUrl("/login");
-    }
-
-    if (this.authUserStorage.role == "Super Administrator" || this.authUserStorage.role == "Group Administrator") {
-      this.authUserMenu = true;
-
-    } else {
-      this.authUserMenu = false;
-
-    }
-
   }
 
 }

@@ -22,12 +22,19 @@ MongoClient.connect(url, {maxPoolSize:10, useNewUrlParser: true, useUnifiedTopol
     const db = client.db(dbName);
 
     require("./routes/auth-login.js")(db, app);
+    require("./routes/auth-read.js")(db, app);
+    require("./routes/auth-logout.js")(db, app);
+
     require("./routes/users-create.js")(db, app);
     require("./routes/users-read.js")(db, app);
     require("./routes/users-delete.js")(db, app);
     require("./routes/users-update.js")(db, app);
+    require("./routes/users-one.js")(db, app);
 
     require("./routes/groups-read.js")(db, app);
+    require("./routes/groups-create.js")(db, app);
+    require("./routes/groups-one.js")(db, app);
+    require("./routes/groups-assigned.js")(db, app);
     
     require("./routes/channels-create.js")(db, app);
     require("./routes/channels-read.js")(db, app);

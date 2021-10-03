@@ -87,24 +87,6 @@ export class ChannelsCreateComponent implements OnInit {
   }
 
   pagePermissions() {
-    //read in local storage for auth user, if not there redirec to login page
-    var authUserFile = localStorage.getItem("authUser"); 
-    if (authUserFile) {
-      this.authUserStorage = JSON.parse(authUserFile);
-
-    } else {
-      this.router.navigateByUrl("/login");
-    }
-
-    if (this.authUserStorage.role == "Super Administrator" || this.authUserStorage.role == "Group Administrator" || this.authUserStorage.role == "Group Assistant") {
-      this.authUserMenu = true;
-
-    } else {
-      this.authUserMenu = false;
-      this.router.navigateByUrl("/channels/current");
-      
-    }
-
   }
 
 }

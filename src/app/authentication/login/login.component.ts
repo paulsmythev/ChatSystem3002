@@ -40,8 +40,8 @@ export class LoginComponent implements OnInit {
       this.newLogin = new Authentication(this.inputIdentification, this.inputPassword)
 
       this.dbservices.authLogin(this.newLogin).subscribe((data)=>{
-
-        if (data.userExists == false) {
+        
+        if (data.userLogin == false) {
           let good:HTMLHeadingElement = document.getElementById("good") as HTMLHeadingElement;
           good.innerText = "";
 
@@ -51,10 +51,7 @@ export class LoginComponent implements OnInit {
           this.inputIdentification = "";
           this.inputPassword = "";
 
-        } else if (data.length == 1) {
-          let authenticatedUser = {"status":true, "_id":data[0]._id, "username":data[0].username, "email":data[0].email, "role":data[0].role, "profilepicture":data[0].profilepicture};
-          localStorage.setItem("authUser", JSON.stringify(authenticatedUser));
-
+        } else if (data.userLogin == true) {
           let good:HTMLHeadingElement = document.getElementById("good") as HTMLHeadingElement;
           good.innerText = "Successful Login, Redirecting!";
 
@@ -62,7 +59,12 @@ export class LoginComponent implements OnInit {
           this.inputPassword = "";
           //this.router.navigateByUrl("/groupsall");
 
+          this.dbservices.authRead().subscribe((data)=>{
+            console.log(data);
+          });
+
         }
+
 
       });
 
@@ -71,19 +73,6 @@ export class LoginComponent implements OnInit {
   }
 
   authorisationCheck() {
-    //if the user is logged in, they will be redirected
-    let checkStorage = localStorage.getItem("authUser");
-    let phaseStorage: any = {};
-
-    if (checkStorage) {
-      phaseStorage = JSON.parse(checkStorage);
-    }
-    
-    if (phaseStorage.status == true) {
-      //this.router.navigateByUrl("/groupsall");
-      console.log("navigateByUrl");
-    }
-
   }
 
 }

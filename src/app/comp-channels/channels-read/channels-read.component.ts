@@ -48,26 +48,9 @@ export class ChannelsReadComponent implements OnInit {
   }
 
   chatRoom(id) {
-
   }
 
   pagePermissions() {
-    //read in local storage for auth user, if not there redirec to login page
-    var authUserFile = localStorage.getItem("authUser"); 
-    if (authUserFile) {
-      this.authUserStorage = JSON.parse(authUserFile);
-
-    } else {
-      this.router.navigateByUrl("/login");
-    }
-
-    if (this.authUserStorage.role == "Super Administrator" || this.authUserStorage.role == "Group Administrator") {
-
-    } else {
-      this.router.navigateByUrl("/channels/current");
-
-    }
-
   }
 
 }
