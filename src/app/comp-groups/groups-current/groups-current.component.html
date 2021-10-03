@@ -27,15 +27,15 @@
 
         <div class="d-flex justify-content-center feedback" id="authError"></div>
 
+        <div class="d-flex justify-content-center feedback" id="good"></div>
+        <div class="d-flex justify-content-center feedback" id="bad"></div>
+
           <div *ngFor="let groupsList of groups">
           <!------ Card Start -------->
           <div class="text-center" id="groupshow">
             <div class="card green">
               <div class="additional">
               <div class="user-card">
-              <div class="points center">
-                <img src="assets/images/megaphone_speaker_icon.png" alt="{{groupsList.name}} profile Picture" width="32px" height="32px"> Channels: ?
-              </div>
                 <img src="assets/images/grouppics/{{groupsList.groupPicture_id}}" class="img-fluid d-block mx-auto rounded-circle img-thumbnail mb-4">
               </div>
               <div class="points center" id="pushdown">

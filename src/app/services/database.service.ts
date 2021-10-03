@@ -63,8 +63,12 @@ export class DatabaseService {
     return this.http.post<any>("http://localhost:3000/api/channels-delete", {"_id":_id});
   }
 
-  channelsCurrent(_id) {
-    return this.http.post<any>("http://localhost:3000/api/channels-current", {"_id":_id});
+  channelsCurrent() {
+    return this.http.get<any>("http://localhost:3000/api/channels-current");
+  }
+
+  channelsOne(_id) {
+    return this.http.post<any>("http://localhost:3000/api/channels-one", {"_id":_id});
   }
 
   //Groups

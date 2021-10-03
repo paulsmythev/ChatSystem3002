@@ -19,17 +19,32 @@ export class GroupsCurrentComponent implements OnInit {
   displayArray = new Array();
 
   ngOnInit(): void {
+    //clear error handling
+    let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
+    error.innerText = "";
+    let good:HTMLHeadingElement = document.getElementById("good") as HTMLHeadingElement;
+    good.innerText = "";
+
     //check user permissions
     this.pagePermissions();
 
     this.dbservices.groupsCurrent().subscribe((data)=>{
-      
-      for (let i = 0; i < data.length; i++) {
-        this.dbservices.groupsOne(data[i].group_id).subscribe((data)=> {
-          this.displayArray.push(data[0]);
-          this.displayArray = this.groups;
-        });
 
+      if (data.length < 0) {
+        let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
+        error.innerText = "Database Error";
+
+      } else {
+        for (let i = 0; i < data.length; i++) {
+          this.dbservices.groupsOne(data[i].group_id).subscribe((data)=> {
+            this.displayArray.push(data[0]);
+            this.displayArray = this.groups;
+            console.log(data[0].name);
+            //is dropping one group off, something to do with array count
+          });
+  
+        }
+        
       }
       
     });
@@ -37,9 +52,13 @@ export class GroupsCurrentComponent implements OnInit {
   }
 
   deleteGroup(group_id) {
+    this.dbservices.groupsDelete(group_id).subscribe((data)=> {
+      this.groups = data;
+    })
   }
 
-  joinChat(groups_id, channel_id) {
+  joinChat(group_id, channel_id) {
+    this.router.navigateByUrl("/chat/read/" + group_id + "/" + channel_id);
   }
 
   pagePermissions() {

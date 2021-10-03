@@ -14,11 +14,11 @@ export class ChannelsCurrentComponent implements OnInit {
 
   channels:Channels[] = [];
 
-  authUserStorage: any = {};
   authUserMenu:boolean = false;
 
   user_id:number = 0;
 
+  displayArray = new Array();
 
   ngOnInit(): void {
 
@@ -31,28 +31,37 @@ export class ChannelsCurrentComponent implements OnInit {
     let good:HTMLHeadingElement = document.getElementById("good") as HTMLHeadingElement;
     good.innerText = "";
 
-    //get user id
-    var authUserFile = localStorage.getItem("authUser"); 
-    if (authUserFile) {
-      this.authUserStorage = JSON.parse(authUserFile);
-
-    }
-
-    this.user_id = this.authUserStorage._id;
-
-    this.dbservices.channelsCurrent(this.user_id).subscribe((data)=> {
-      this.channels = data;
+    this.dbservices.channelsCurrent().subscribe((data)=> {
       
+      if (data.length < 0) {
+        let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
+        error.innerText = "Database Error";
+
+      } else {
+        for (let i = 0; i < data.length; i++) {
+          this.dbservices.channelsOne(data[i].group_id).subscribe((data)=> {
+            this.displayArray.push(data[0]);
+            this.displayArray = this.channels;
+            console.log(data[0].name);
+            //is dropping one group off, something to do with array count
+          });
+  
+        }
+        
+      }
+
     });
 
   }
 
-  leaveGroup(id) {
-
+  leaveChannel(channels_id) {
+    this.dbservices.channelsDelete(channels_id).subscribe((data)=> {
+      this.channels = data;
+    })
   }
 
-  chatRoom(id) {
-
+  joinChat(group_id, channel_id) {
+    this.router.navigateByUrl("/chat/read/" + group_id + "/" + channel_id);
   }
 
   pagePermissions() {

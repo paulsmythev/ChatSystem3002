@@ -1,20 +1,16 @@
 module.exports = function(db, app) {
-    app.post("/api/channels-current", function(req, res) {
+    app.get("/api/channels-current", function(req, res) {
 
-        const collection = db.collection('groups_users');
-        collection.find({user_id:req.body._id}).toArray((err, data)=> {
-
-            for (let i = 0; i < data.length; i++) {
-                const collection = db.collection('channels');
-                collection.find({group_id:data[i].group_id}).toArray((err, data)=> {
-                    res.send(data);
-                    //console.log(data);
-                    //console.log("<--------- BREAK --------->");
-
-                });
-            }
+        const collection = db.collection('current_user');
+        collection.find({}).toArray((err, data)=> {
+            
+            const collection = db.collection('groups_users');
+            collection.find({user_id:data[0]._id}).toArray((err, dataSub)=> {
+                res.send(dataSub);
+            });
 
         });
 
     });
+
 }
