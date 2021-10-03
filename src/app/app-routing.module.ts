@@ -17,6 +17,8 @@ import { GroupsCreateComponent } from './comp-groups/groups-create/groups-create
 import { GroupsCurrentComponent } from './comp-groups/groups-current/groups-current.component';
 import { GroupsReadComponent } from './comp-groups/groups-read/groups-read.component';
 
+import { ChatReadComponent } from './comp-chat/chat-read/chat-read.component';
+
 const routes: Routes = [{path: "login", component: LoginComponent},
                         {path: "logout", component: LogoutComponent},
                         {path: "", redirectTo: "login", pathMatch: "full"},
@@ -32,7 +34,9 @@ const routes: Routes = [{path: "login", component: LoginComponent},
                         {path: "groups/assigned", component: GroupsAssignedComponent},
                         {path: "groups/create", component: GroupsCreateComponent},
                         {path: "groups/current", component: GroupsCurrentComponent},
-                        {path: "groups/read", component: GroupsReadComponent}
+                        {path: "groups/read", component: GroupsReadComponent},
+
+                        {path: "chat/read/:group/:channel", component: ChatReadComponent}
                       ];
 
 @NgModule({

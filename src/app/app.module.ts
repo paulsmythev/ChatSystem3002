@@ -18,6 +18,7 @@ import { GroupsReadComponent } from './comp-groups/groups-read/groups-read.compo
 import { GroupsCreateComponent } from './comp-groups/groups-create/groups-create.component';
 import { GroupsCurrentComponent } from './comp-groups/groups-current/groups-current.component';
 import { GroupsAssignedComponent } from './comp-groups/groups-assigned/groups-assigned.component';
+import { ChatReadComponent } from './comp-chat/chat-read/chat-read.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { GroupsAssignedComponent } from './comp-groups/groups-assigned/groups-as
     GroupsReadComponent,
     GroupsCreateComponent,
     GroupsCurrentComponent,
-    GroupsAssignedComponent
+    GroupsAssignedComponent,
+    ChatReadComponent
   ],
   imports: [
     BrowserModule,

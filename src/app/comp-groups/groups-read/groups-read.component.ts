@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { Groups } from "../../classes/groups/groups";
 import { DatabaseService } from "../../services/database.service";
@@ -27,8 +26,19 @@ export class GroupsReadComponent implements OnInit {
       }
 
       this.groups = data;
+      console.log(data);
 
     });
+  }
+
+  deleteGroup(group_id) {
+    this.dbservices.groupsDelete(group_id).subscribe((data)=> {
+      this.groups = data;
+    })
+  }
+
+  joinChat(group_id, channel_id) {
+    this.router.navigateByUrl("/chat/read/" + group_id + "/" + channel_id);
   }
 
   pagePermissions() {

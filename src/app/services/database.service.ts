@@ -85,5 +85,13 @@ export class DatabaseService {
     return this.http.post<any>("http://localhost:3000/api/groups-assigned", particulars)
   }
 
+  groupsDelete(_id) {
+    return this.http.post<any>("http://localhost:3000/api/groups-delete", {"_id":_id});
+  }
+
+  groupsCurrent() {
+    return this.http.get<any>("http://localhost:3000/api/groups-current");
+  }
+
 
 }

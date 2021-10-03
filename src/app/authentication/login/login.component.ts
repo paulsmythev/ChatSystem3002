@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
 
           this.inputIdentification = "";
           this.inputPassword = "";
-          //this.router.navigateByUrl("/groupsall");
+          this.router.navigateByUrl("/groups/current");
 
           this.dbservices.authRead().subscribe((data)=>{
             console.log(data);

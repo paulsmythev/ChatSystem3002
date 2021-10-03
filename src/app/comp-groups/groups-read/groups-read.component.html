@@ -44,7 +44,7 @@
               </div>
               <div class="general"><br>
                 <h1>{{groupsList.name | uppercase}}</h1>
-                <p>Description:<br> {{groupsList.description}}{{groupsList.description}}</p>
+                <p>Description:<br> {{groupsList.description}}</p>
                 
 
                 <div class="form-group">
@@ -55,9 +55,10 @@
                     <option>Group Assistant</option>
                     <option>User</option>
                   </select>
+                  <button type="button" class="btn btn-link" (click)="joinChat(groupsList._id, groupsList._id)">Join Chat</button>
 
                   <div class="d-flex justify-content-center mt-3 login_container">
-                    <button type="submit" name="button" class="btn btn-secondary">Delete Group</button>
+                    <button type="submit" name="button" class="btn btn-secondary"(click)="deleteGroup(groupsList._id)">Delete Group</button>
                   </div>
 
               </div>

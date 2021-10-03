@@ -35,6 +35,8 @@ MongoClient.connect(url, {maxPoolSize:10, useNewUrlParser: true, useUnifiedTopol
     require("./routes/groups-create.js")(db, app);
     require("./routes/groups-one.js")(db, app);
     require("./routes/groups-assigned.js")(db, app);
+    require("./routes/groups-delete.js")(db, app);
+    require("./routes/groups-current.js")(db, app);
     
     require("./routes/channels-create.js")(db, app);
     require("./routes/channels-read.js")(db, app);

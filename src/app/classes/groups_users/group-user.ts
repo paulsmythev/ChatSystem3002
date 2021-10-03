@@ -3,6 +3,6 @@ export class GroupUser {
         public group_id:number,
         public group_name:string,
         public user_id:number,
-        public username
+        public username:string
     ) {}
 }
