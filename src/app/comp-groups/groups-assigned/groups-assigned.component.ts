@@ -24,6 +24,8 @@ export class GroupsAssignedComponent implements OnInit {
 
   newGroupuser:GroupUser;
 
+  menuDisplay:boolean = true;
+
   ngOnInit(): void {
     //clear error handling
     let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
@@ -90,6 +92,17 @@ export class GroupsAssignedComponent implements OnInit {
   }
 
   pagePermissions() {
+    this.dbservices.authRead().subscribe((data)=> {
+      if (data.length <= 0) {
+        this.router.navigateByUrl("/login");
+
+      } else if (data[0].role == "Group Assistant" || data[0].role == "User") {
+        this.router.navigateByUrl("/users/current");
+        this.menuDisplay = false;
+        
+      }
+    });
+
   }
 
 }

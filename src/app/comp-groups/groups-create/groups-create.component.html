@@ -1,24 +1,26 @@
-<!------ Submenu Starts Here ---------->
-<nav class="navbar-expand-sm">
-    <ul class="navbar-nav justify-content-center">
-  
+<ng-template [ngIf]="menuDisplay">
+  <!------ Submenu Starts Here ---------->
+    <nav class="navbar-expand-sm">
+      <ul class="navbar-nav justify-content-center">
+      
         <div id="subMenuEndLeft"></div>
-  
+      
         <li class="nav-item text-center" id="groupeditLink" id="subMenu">
-            <a class="nav-link text-dark" href="/groups/create">Create Groups</a>
+          <a class="nav-link text-dark" href="/groups/create">Create Groups</a>
+        </li>
+      
+        <li class="nav-item" id="groupnewLink" id="subMenu">
+          <a class="nav-link text-dark" href="/groups/assigned">Assign Groups</a>
         </li>
   
         <li class="nav-item" id="groupnewLink" id="subMenu">
-            <a class="nav-link text-dark" href="/groups/assigned">Assign Groups</a>
+          <a class="nav-link text-dark" href="/groups/current">Current Groups</a>
         </li>
-
-        <li class="nav-item" id="groupnewLink" id="subMenu">
-            <a class="nav-link text-dark" href="/groups/current">Current Groups</a>
-        </li>
-  
+      
         <div id="subMenuEndRight"></div>
-    </ul>
-</nav>
+      </ul>
+    </nav>
+  </ng-template>
 
 <div class="container d-flex justify-content-center">
     <div class="row">

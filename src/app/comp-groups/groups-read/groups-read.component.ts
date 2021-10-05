@@ -14,19 +14,24 @@ export class GroupsReadComponent implements OnInit {
 
   groups:Groups[] = [];
 
+  menuDisplay:boolean = true;
+
   ngOnInit(): void {
     //check user permissions
     this.pagePermissions();
 
     this.dbservices.groupsRead().subscribe((data)=>{
+      console.log(data);
+      //this.groups = data;
 
-      if (data.length == 0) {
+      if (data.authenticationStatus == false) {
         let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
-        error.innerText = "If you’re seeing this message RUN!";
+        error.innerText = "Server Side Authentication Error";
+      } else {
+        this.groups = data;
       }
 
-      this.groups = data;
-      console.log(data);
+
 
     });
   }
@@ -42,6 +47,17 @@ export class GroupsReadComponent implements OnInit {
   }
 
   pagePermissions() {
+    this.dbservices.authRead().subscribe((data)=> {
+      if (data.length <= 0) {
+        this.router.navigateByUrl("/login");
+
+      } else if (data[0].role == "Group Assistant" || data[0].role == "User") {
+        this.router.navigateByUrl("/groups/current");
+        this.menuDisplay = false;
+        
+      }
+    });
+
   }
 
 }

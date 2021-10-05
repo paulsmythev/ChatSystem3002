@@ -21,8 +21,7 @@ export class ChannelsCreateComponent implements OnInit {
   inputDescription:string = "";
   randomPic = "";
 
-  authUserStorage: any = {};
-  authUserMenu:boolean = false;
+  menuDisplay:boolean = true;
 
   constructor(private router: Router, private dbservices:DatabaseService) { }
 
@@ -87,6 +86,17 @@ export class ChannelsCreateComponent implements OnInit {
   }
 
   pagePermissions() {
+    this.dbservices.authRead().subscribe((data)=> {
+      if (data.length <= 0) {
+        this.router.navigateByUrl("/login");
+
+      } else if (data[0].role == "User") {
+        this.router.navigateByUrl("/channels/current");
+        this.menuDisplay = false;
+        
+      }
+    });
+
   }
 
 }

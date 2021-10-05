@@ -18,7 +18,7 @@ export class UsersCreateComponent implements OnInit {
 
   newUser:User;
 
-  authUserStorage: any = {};
+  menuDisplay:boolean = true;
 
   constructor(private router: Router, private dbservices:DatabaseService) { }
 
@@ -65,7 +65,16 @@ export class UsersCreateComponent implements OnInit {
   }
 
   pagePermissions() {
+    this.dbservices.authRead().subscribe((data)=> {
+      if (data.length <= 0) {
+        this.router.navigateByUrl("/login");
+
+      } else if (data[0].role == "Group Assistant" || data[0].role == "User") {
+        this.router.navigateByUrl("/users/current");
+        this.menuDisplay = false;
+      }
+    });
+
   }
 
 }
-

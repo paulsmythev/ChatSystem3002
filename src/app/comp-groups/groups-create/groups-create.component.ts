@@ -19,6 +19,8 @@ export class GroupsCreateComponent implements OnInit {
   createdBy_id:string = "";
   randomPic = "";
 
+  menuDisplay:boolean = true;
+
   ngOnInit(): void {
     //check user permissions
     this.pagePermissions();
@@ -63,12 +65,22 @@ export class GroupsCreateComponent implements OnInit {
 
   }
 
-  pagePermissions() {
-
-  }
-
   imageGen() {
     return Math.floor(Math.random() * 5) + 1;
+  }
+
+  pagePermissions() {
+    this.dbservices.authRead().subscribe((data)=> {
+      if (data.length <= 0) {
+        this.router.navigateByUrl("/login");
+
+      } else if (data[0].role == "Group Assistant" || data[0].role == "User") {
+        this.router.navigateByUrl("/groups/current");
+        this.menuDisplay = false;
+        
+      }
+    });
+
   }
 
 }

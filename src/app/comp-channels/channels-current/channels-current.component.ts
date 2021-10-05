@@ -14,11 +14,11 @@ export class ChannelsCurrentComponent implements OnInit {
 
   channels:Channels[] = [];
 
-  authUserMenu:boolean = false;
-
   user_id:number = 0;
 
   displayArray = new Array();
+
+  menuDisplay:boolean = true;
 
   ngOnInit(): void {
 
@@ -65,6 +65,17 @@ export class ChannelsCurrentComponent implements OnInit {
   }
 
   pagePermissions() {
+    this.dbservices.authRead().subscribe((data)=> {
+      if (data.length <= 0) {
+        this.router.navigateByUrl("/login");
+
+      } else if (data[0].role == "User") {
+        this.router.navigateByUrl("/channels/current");
+        this.menuDisplay = false;
+        
+      }
+    });
+
   }
 
 }

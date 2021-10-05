@@ -14,8 +14,7 @@ export class ChannelsReadComponent implements OnInit {
 
   channels:Channels[] = [];
 
-  authUserStorage: any = {}
-  authUserMenu:boolean = false;
+  menuDisplay:boolean = true;
 
   ngOnInit(): void {
 
@@ -51,6 +50,17 @@ export class ChannelsReadComponent implements OnInit {
   }
 
   pagePermissions() {
+    this.dbservices.authRead().subscribe((data)=> {
+      if (data.length <= 0) {
+        this.router.navigateByUrl("/login");
+
+      } else if (data[0].role == "User") {
+        this.router.navigateByUrl("/channels/current");
+        this.menuDisplay = false;
+        
+      }
+    });
+
   }
 
 }

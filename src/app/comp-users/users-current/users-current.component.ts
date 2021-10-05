@@ -20,6 +20,8 @@ export class UsersCurrentComponent implements OnInit {
   role:string = "";
   profilepicture:string = "";
 
+  menuDisplay:boolean = true;
+
   ngOnInit(): void {
 
     //check user permissions
@@ -39,6 +41,16 @@ export class UsersCurrentComponent implements OnInit {
   }
 
   pagePermissions() {
+    this.dbservices.authRead().subscribe((data)=> {
+      if (data.length <= 0) {
+        this.router.navigateByUrl("/login");
+
+      } else if (data[0].role == "Group Assistant" || data[0].role == "User") {
+        this.menuDisplay = false;
+        
+      }
+    });
+
   }
 
 }
