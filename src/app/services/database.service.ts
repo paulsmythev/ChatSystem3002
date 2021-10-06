@@ -67,8 +67,12 @@ export class DatabaseService {
     return this.http.get<any>("http://localhost:3000/api/channels-current");
   }
 
-  channelsOne(_id) {
+  channelsOne(_id) {//What does this do??
     return this.http.post<any>("http://localhost:3000/api/channels-one", {"_id":_id});
+  }
+
+  channelsChannels(_id) {
+    return this.http.post<any>("http://localhost:3000/api/channels-channel", {"_id":_id});
   }
 
   //Groups
@@ -97,5 +101,15 @@ export class DatabaseService {
     return this.http.get<any>("http://localhost:3000/api/groups-current");
   }
 
+  //Chat
+
+  chatRead() {
+    return this.http.get<any>("http://localhost:3000/api/chat-testing");
+  }
+
+  chatHistory(group_id, channel_id) {
+    let identifier = {"group_id":group_id, "channel_id":channel_id}
+    return this.http.post<any>("http://localhost:3000/api/chat-history", identifier);
+  }
 
 }

@@ -6,6 +6,18 @@ const cors = require("cors");
 const MongoClient = require("mongodb").MongoClient
 var ObjectID = require("mongodb").ObjectID;
 
+app.use(express.json());
+app.use(express.urlencoded({
+    extended: true
+}));
+
+const io = require("socket.io")(http, {
+    cors: {
+        origin: "http://localhost:4200",
+        methods: ["GET", "POST"]
+    }
+});
+
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, OPTIONS");
@@ -43,6 +55,13 @@ MongoClient.connect(url, {maxPoolSize:10, useNewUrlParser: true, useUnifiedTopol
     require("./routes/channels-delete.js")(db, app);
     require("./routes/channels-current.js")(db, app);
     require("./routes/channels-one.js")(db, app);
+    require("./routes/channels-channel.js")(db, app);
+
+    require("./routes/chat-testing.js")(db, app);
+    require("./routes/chat-operations.js")(db, app);
+    require("./routes/chat-history.js")(db, app);
     
     require("./listen.js")(http);
+
+    require('./sockets.js').connect(io,3000);
 });

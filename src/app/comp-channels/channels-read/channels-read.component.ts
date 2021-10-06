@@ -46,7 +46,8 @@ export class ChannelsReadComponent implements OnInit {
     });
   }
 
-  chatRoom(id) {
+  chatRoom(group_id, channel_id) {
+    this.router.navigateByUrl("/chat/read/" + group_id + "/" + channel_id);
   }
 
   pagePermissions() {
