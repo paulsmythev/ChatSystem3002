@@ -49,6 +49,7 @@ MongoClient.connect(url, {maxPoolSize:10, useNewUrlParser: true, useUnifiedTopol
     require("./routes/groups-assigned.js")(db, app);
     require("./routes/groups-delete.js")(db, app);
     require("./routes/groups-current.js")(db, app);
+    require("./routes/groups-users.js")(db, app);
     
     require("./routes/channels-create.js")(db, app);
     require("./routes/channels-read.js")(db, app);
@@ -57,9 +58,7 @@ MongoClient.connect(url, {maxPoolSize:10, useNewUrlParser: true, useUnifiedTopol
     require("./routes/channels-one.js")(db, app);
     require("./routes/channels-channel.js")(db, app);
 
-    require("./routes/chat-testing.js")(db, app);
-    require("./routes/chat-operations.js")(db, app);
-    require("./routes/chat-history.js")(db, app);
+    require("./routes/chat-read.js")(db, app);
     
     require("./listen.js")(http);
 

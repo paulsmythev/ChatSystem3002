@@ -101,15 +101,14 @@ export class DatabaseService {
     return this.http.get<any>("http://localhost:3000/api/groups-current");
   }
 
+  groupUsers(_id) {
+    return this.http.post<any>("http://localhost:3000/api/groups-users", {"_id":_id});
+  }
+
   //Chat
 
-  chatRead() {
-    return this.http.get<any>("http://localhost:3000/api/chat-testing");
+  chatRead(group_id, channel_id) {
+    let chatPass = {"group_id": group_id,"channel_id": channel_id}
+    return this.http.post<any>("http://localhost:3000/api/chat-read", chatPass);
   }
-
-  chatHistory(group_id, channel_id) {
-    let identifier = {"group_id":group_id, "channel_id":channel_id}
-    return this.http.post<any>("http://localhost:3000/api/chat-history", identifier);
-  }
-
 }

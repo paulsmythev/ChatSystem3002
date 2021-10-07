@@ -19,10 +19,9 @@ export class ChatReadComponent implements OnInit {
   messages:string[] = [];
   ioConnection:any;
 
-  groups:Groups[] = [];
-  channels:Channels[] = [];
+  chatLogs:any = [];
 
-  users:Users[] = [];
+  chatUsers:any = [];
 
   group_id:number = 0;
   channel_id:number = 0;
@@ -30,52 +29,33 @@ export class ChatReadComponent implements OnInit {
   //page heading
   group_name:string = "";
   channel_name:string ="";
+  channel_description = "";
 
   ngOnInit(): void {
     //Get ActivatedRoute
     this.group_id = parseInt(this.route.snapshot.params["group"]);
     this.channel_id = parseInt(this.route.snapshot.params["channel"]);
 
-    this.dbservices.groupsOne(this.group_id).subscribe((data)=>{
-      this.groups = data;
-      this.group_name = data[0].name;
-
-    });
-
-    this.dbservices.channelsChannels(this.channel_id).subscribe((data)=>{
-      this.channels = data;
-      this.channel_name = data[0].name;
-
-    });
-
-    this.dbservices.chatHistory(this.group_id, this.channel_id).subscribe((data)=>{
-      console.log(data);
-    });
-
     this.initIoConnection();
 
-    this.getUsers();
+    this.chatHistory();
 
-    //testing
-    this.dbservices.chatRead().subscribe((data)=> {
-      //console.log(data[0].chatlog[0]);
-      //console.log(data[0].chatlog.length);
-      //console.log(data);
-    });
+    this.groupUsers();
 
+    this. pageinfo();
   }
 
   private initIoConnection(){
     this.socketService.initSocket();
     this.ioConnection = this.socketService.onMessage().subscribe((message:string) => {
-      this.messages.push(message);
+      this.messages.push(message,);
     });
   }
 
    chat() {
     if (this.messagecontent) {
       this.socketService.send(this.messagecontent);
-      this.messagecontent = "";//this.messagecontent = null;
+      this.messagecontent = "";
 
     } else {
       console.log("no message");
@@ -83,12 +63,41 @@ export class ChatReadComponent implements OnInit {
 
   }
 
-  getUsers() {
-    this.dbservices.usersRead().subscribe((data)=> {
-      this.users = data;
+  chatHistory() {
+    this.dbservices.chatRead(this.group_id, this.channel_id).subscribe((data)=>{
+      this.chatLogs = data[0].chatlog;
+      console.log(this.chatLogs);
 
     });
+  }
 
+  groupUsers() {
+    this.dbservices.groupUsers(this.group_id).subscribe((data)=>{
+      for (let i = 0; i < data.length; i++) {
+        this.dbservices.usersOne(data[i].user_id).subscribe((data)=>{
+          this.passUsers(data[0]);
+        });
+      }
+    });
+  }
+
+  passUsers(array) {
+    this.chatUsers.push(array);
+    
+  }
+
+  pageinfo() {
+    this.dbservices.groupsOne(this.group_id).subscribe((data)=>{
+      this.group_name = data[0].name;
+    });
+    this.dbservices.channelsChannels(this.channel_id).subscribe((data)=>{
+      this.channel_name = data[0].name;
+      this.channel_description = data[0].description;
+    });
   }
 
 }
+/*
+let good:HTMLHeadingElement = document.getElementById("good") as HTMLHeadingElement;
+    good.innerText = "";
+*/

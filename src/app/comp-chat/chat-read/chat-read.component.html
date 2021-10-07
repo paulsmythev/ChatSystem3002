@@ -1,104 +1,94 @@
 <!------ Content Starts Here ---------->
 
 <div class="container d-flex justify-content-center">
-    <div class="row">
-      <div class="col-1"></div>
-      <div class="col-10"><div id="pageTitle"></div></div>
-      <div class="col-1"></div>
-    </div>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-10"><div id="pageTitle"></div></div>
+    <div class="col-1"></div>
   </div>
-  
-  <div class="container d-flex justify-content-center">
-    <div class="row">
-      <div class="col-1"></div>
-      <div class="col-10">
-  
-      <!------ Card Start -------->
-      <div class="card green center">
-          <div class="general">
-            <h1>Group: {{group_name | uppercase}}, Channel: {{channel_name | uppercase}}</h1>
-  
-            <main class="content">
-              <div class="container p-0">
-          
-                  <div class="card">
-  
-                      <div class="row g-0">
-                          <div class="col-12 col-lg-5 col-xl-3 border-right">
-                              <div class="position-relative">
-                                  
-                                  <div class="channelusers">
-                                      
-                                    <div *ngFor="let user of users">
-                                      <div class="list-group-item list-group-item-action border-0">
-                                          <div class="d-flex align-items-start">
-                                            <img src="assets/images/profilepics/{{user.profilepicture}}" class="rounded-circle mr-1" alt="CHANGE" width="60" height="60">
-                                              &nbsp;<div id="namePadding">{{user.username | uppercase }}</div>
-                                          </div>
-                                      </div>
-                                    </div>
+</div>
 
-                                      <hr class="d-block d-lg-none mt-1 mb-0">
-                                      
-                                  </div>
-                                  <div id="uploadpic">
-                                      <input type="file" class="btn-secondary custom-file-input" id="customFile" name="filename">
-                                  </div>
-                              </div>
-                          </div>
-  
-                          <div class="col-12 col-lg-7 col-xl-8"> <!-- <div class="col-12 col-lg-7 col-xl-9"> -->
-          
-                              <div class="position-relative">
-                                  <div class="chat-messages p-4">
+<div class="container d-flex justify-content-center">
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
 
-                                    <div *ngFor="let message of messages">
+    <!------ Card Start -------->
+    <div class="card green center">
+        <div class="general">
+          <h1>{{channel_name}}</h1>
 
-                                      <div class="chat-message-left pb-4">
-                                          <div>
-                                              <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
-                                              <div class="text-muted small text-nowrap mt-2">2:42 am</div>
-                                          </div>
-                                          <div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
-                                              <div class="font-weight-bold mb-1">Sharon Lessman</div>
-                                              {{message}}
-                                          </div>
-                                      </div>
-          
-                                      <div class="chat-message-right mb-4">
-                                          <div>
-                                              <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
-                                              <div class="text-muted small text-nowrap mt-2">2:43 am</div>
-                                          </div>
-                                          <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
-                                              <div class="font-weight-bold mb-1">You</div>
-                                              {{message}}
-                                          </div>
-                                      </div>
-          
-                                  </div>
-                              </div>
+            <div class="container p-0">
+        
+                <div class="card">
 
+                    <div class="row g-0">
+                        <div class="col-12 col-lg-5 col-xl-3 border-right">
+                            <div class="position-relative">
+                                
+                                <div class="channelusers">
+                                    
+                                    <div *ngFor="let chatUser of chatUsers">
+
+                                        <div class="list-group-item list-group-item-action border-0">
+                                            <div class="d-flex align-items-start">
+                                                <img src="assets/images/profilepics/{{chatUser.profilepicture}}" class="rounded-circle mr-1" alt="{{chatUser.username}}" width="40" height="40">
+                                                &nbsp;<div id="namePadding">{{chatUser.username | uppercase}}</div>
+                                            </div>
+                                        </div>
+
+                                    </div>  
+
+                                    <hr class="d-block d-lg-none mt-1 mb-0">
+                                    
+                                </div>
+                                <div id="uploadpic">
+                                    <input type="file" class="btn-secondary custom-file-input" id="customFile" name="filename">
+                                </div>
                             </div>
-          
-                              <div class="flex-grow-0 py-3 px-4 border-top">
-                                  <div class="input-group">
-                                    <input type="text" [(ngModel)]="messagecontent" name="messagecontent" id="messagecontent" class="form-control"/>
-                                    <button (click)="chat()" class="btn btn-secondary">Chat</button>
-                                  </div>
-                              </div>
-          
+                        </div>
+
+                        <div class="col-12 col-lg-7 col-xl-8"> <!-- <div class="col-12 col-lg-7 col-xl-9"> -->
+        
+                            <div class="position-relative">
+                                <div class="chat-messages p-4">
+
+                                        <div *ngFor="let chatLog of chatLogs">
+
+                                            <div class="chat-message-right pb-4">
+                                                <div>
+                                                    <img src="assets/images/profilepics/{{chatLog.profilepicture}}" class="rounded-circle mr-1" alt="{{chatLog.username}}" width="70" height="70">
+                                                    <div class="text-muted small text-nowrap mt-2">{{chatLogs.timestamp}}</div>
+                                                </div>
+                                                <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
+                                                <div class="font-weight-bold mb-1"><u>{{chatLog.username}}</u></div>
+                                                    {{chatLog.message}}
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                        <div class="flex-grow-0 py-3 px-4 border-top">
+                          <div class="input-group">
+                            <input type="text" [(ngModel)]="messagecontent" name="messagecontent" id="messagecontent" class="form-control"/>
+                              <button (click)="chat()" class="btn btn-secondary">Chat</button>
                           </div>
                       </div>
-                  </div>
-              </div>
-          </main>
-  
-          </div>
+                      
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <!------ Card End ---------->
-  
       </div>
-      <div class="col-1"></div>
+      <!------ Card End ---------->
+
     </div>
+    <div class="col-1"></div>
   </div>
+</div>
