@@ -4,7 +4,6 @@ module.exports = function(db, app) {
         collection.find({"group_id":req.body.group_id, "channel_id": req.body.channel_id}).toArray((err, data)=>{
             res.send(data);
         });
-
         
     });
 }

@@ -1,3 +1,29 @@
+<!------ Submenu Starts Here ---------->
+<nav class="navbar-expand-sm">
+    <ul class="navbar-nav justify-content-center">
+
+        <div id="subMenuEndLeft"></div>
+
+        <li class="nav-item text-center" id="groupeditLink" id="subMenu">
+            <a class="nav-link text-dark" href="/#">Current Groups</a>
+        </li>
+
+        <li class="nav-item" id="groupnewLink" id="subMenu">
+            <a class="nav-link text-dark" href="/#">Manage Groups</a>
+        </li>
+
+        <li class="nav-item" id="groupshowLink" id="subMenu">
+            <a class="nav-link text-dark" href="/#">Create Group</a>
+        </li>
+
+        <li class="nav-item" id="groupupdateLink" id="subMenu">
+            <a class="nav-link text-dark" href="/#">Groups/Users</a>
+        </li>
+
+        <div id="subMenuEndRight"></div>
+    </ul>
+</nav>
+
 <!------ Content Starts Here ---------->
 
 <div class="container d-flex justify-content-center">
@@ -18,6 +44,7 @@
         <div class="general">
           <h1>{{channel_name}}</h1>
 
+          <main class="content">
             <div class="container p-0">
         
                 <div class="card">
@@ -27,7 +54,7 @@
                             <div class="position-relative">
                                 
                                 <div class="channelusers">
-                                    
+
                                     <div *ngFor="let chatUser of chatUsers">
 
                                         <div class="list-group-item list-group-item-action border-0">
@@ -38,13 +65,9 @@
                                         </div>
 
                                     </div>  
-
-                                    <hr class="d-block d-lg-none mt-1 mb-0">
                                     
                                 </div>
-                                <div id="uploadpic">
-                                    <input type="file" class="btn-secondary custom-file-input" id="customFile" name="filename">
-                                </div>
+
                             </div>
                         </div>
 
@@ -53,36 +76,38 @@
                             <div class="position-relative">
                                 <div class="chat-messages p-4">
 
-                                        <div *ngFor="let chatLog of chatLogs">
+                                    <div *ngFor="let ChatMessage of ChatMessages">
 
-                                            <div class="chat-message-right pb-4">
-                                                <div>
-                                                    <img src="assets/images/profilepics/{{chatLog.profilepicture}}" class="rounded-circle mr-1" alt="{{chatLog.username}}" width="70" height="70">
-                                                    <div class="text-muted small text-nowrap mt-2">{{chatLogs.timestamp}}</div>
-                                                </div>
-                                                <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
-                                                <div class="font-weight-bold mb-1"><u>{{chatLog.username}}</u></div>
-                                                    {{chatLog.message}}
-                                                </div>
+                                        <div class="chat-message-right pb-4">
+                                            <div>
+                                                <img src="assets/images/profilepics/{{ChatMessage.profilepicture}}" class="rounded-circle mr-1" alt="{{ChatMessage.username}}" width="70" height="70">
+                                                <div class="text-muted small text-nowrap mt-2">{{ChatMessage.timestamp}}</div>
                                             </div>
-
+                                            <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
+                                            <div class="font-weight-bold mb-1"><u>{{ChatMessage.username}}</u></div>
+                                                {{ChatMessage.message}}
+                                            </div>
                                         </div>
 
                                     </div>
-                                    
+
                                 </div>
                             </div>
 
-                        <div class="flex-grow-0 py-3 px-4 border-top">
-                          <div class="input-group">
-                            <input type="text" [(ngModel)]="messagecontent" name="messagecontent" id="messagecontent" class="form-control"/>
-                              <button (click)="chat()" class="btn btn-secondary">Chat</button>
-                          </div>
-                      </div>
-                      
+                            <form>
+                                <div class="flex-grow-0 py-3 px-4 border-top">
+                                    <div class="input-group">
+                                        <input type="text" [(ngModel)]="messagecontent" name="messagecontent" id="messagecontent" class="form-control"/>
+                                        <button (click)="chat()" class="btn btn-secondary">Send</button>
+                                    </div>
+                                </div>
+                            </form>
+        
+                        </div>
                     </div>
                 </div>
             </div>
+        </main>
 
         </div>
       </div>

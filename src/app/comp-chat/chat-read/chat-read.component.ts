@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SocketService } from '../../services/socket.service';
 import { DatabaseService } from "../../services/database.service";
-import { Users } from "../../classes/users/users";
-import { Groups } from 'src/app/classes/groups/groups';
-import { Channels } from 'src/app/classes/channels/channels';
+import { ChatMessages } from 'src/app/classes/chatMessages/chat-messages';
+import { ChatMessage } from 'src/app/classes/chatMessages/chat-messages';
 
 @Component({
   selector: 'app-chat-read',
@@ -19,7 +18,8 @@ export class ChatReadComponent implements OnInit {
   messages:string[] = [];
   ioConnection:any;
 
-  chatLogs:any = [];
+  ChatMessages:ChatMessages[] = [];
+  newMessage:ChatMessage;
 
   chatUsers:any = [];
 
@@ -42,7 +42,8 @@ export class ChatReadComponent implements OnInit {
 
     this.groupUsers();
 
-    this. pageinfo();
+    this.pageinfo();
+
   }
 
   private initIoConnection(){
@@ -53,21 +54,25 @@ export class ChatReadComponent implements OnInit {
   }
 
    chat() {
-    if (this.messagecontent) {
-      this.socketService.send(this.messagecontent);
-      this.messagecontent = "";
-
-    } else {
-      console.log("no message");
-    }
+    //build chat message
+    this.dbservices.authRead().subscribe((data)=>{
+      let dateTime = new Date().toLocaleString();
+      this.newMessage = new ChatMessage(data[0]._id, data[0].username, dateTime, this.messagecontent, data[0].profilepicture);
+      
+      if (this.messagecontent) {
+        this.socketService.send(JSON.stringify(this.newMessage));
+        this.messagecontent = "";
+      } else {
+        console.log("no message");
+      }
+    });
 
   }
 
   chatHistory() {
     this.dbservices.chatRead(this.group_id, this.channel_id).subscribe((data)=>{
-      this.chatLogs = data[0].chatlog;
-      console.log(this.chatLogs);
-
+      this.ChatMessages = data[0].chatlog;
+      
     });
   }
 
