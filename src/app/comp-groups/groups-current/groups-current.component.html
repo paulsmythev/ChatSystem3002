@@ -32,7 +32,7 @@
         <div class="d-flex justify-content-center feedback" id="good"></div>
         <div class="d-flex justify-content-center feedback" id="bad"></div>
 
-          <div *ngFor="let groupsList of groups">
+          <div *ngFor="let groupsList of groupsChannels">
           <!------ Card Start -------->
           <div class="text-center" id="groupshow">
             <div class="card green">
@@ -52,10 +52,7 @@
                 <div class="form-group">
                   <label for="exampleFormControlSelect1">List of Channels</label>
                   <select class="form-control" id="dropSize">
-                    <option>Super Administrator</option>
-                    <option>Group Administrator</option>
-                    <option>Group Assistant</option>
-                    <option>User</option>
+                    <!-- <option *ngFor="let channel of groupsChannels.channels" value="{{channel._id}}">{{channel.name}}</option> -->
                   </select>
                   <button type="button" class="btn btn-link" (click)="joinChat(groupsList._id, groupsList._id)">Join Chat</button>
 

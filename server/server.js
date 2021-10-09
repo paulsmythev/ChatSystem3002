@@ -59,6 +59,7 @@ MongoClient.connect(url, {maxPoolSize:10, useNewUrlParser: true, useUnifiedTopol
     require("./routes/channels-channel.js")(db, app);
 
     require("./routes/chat-read.js")(db, app);
+    require("./routes/chat-create.js")(db, app);
     
     require("./listen.js")(http);
 

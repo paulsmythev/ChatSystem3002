@@ -6,6 +6,7 @@ import { User } from "../classes/users/users";
 import { Group } from '../classes/groups/groups';
 import { Channel } from '../classes/channels/channels';
 import { GroupUser } from '../classes/groups_users/group-user';
+import { ChatMessage } from '../classes/chatMessages/chat-messages';
 
 @Injectable({
   providedIn: 'root'
@@ -110,5 +111,9 @@ export class DatabaseService {
   chatRead(group_id, channel_id) {
     let chatPass = {"group_id": group_id,"channel_id": channel_id}
     return this.http.post<any>("http://localhost:3000/api/chat-read", chatPass);
+  }
+
+  chatCreate(particulars:ChatMessage) {
+    return this.http.post<any>("http://localhost:3000/api/chat-create", particulars)
   }
 }

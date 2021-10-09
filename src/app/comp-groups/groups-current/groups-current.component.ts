@@ -13,10 +13,7 @@ export class GroupsCurrentComponent implements OnInit {
 
   constructor(private router: Router, private dbservices:DatabaseService) { }
 
-  groups:Groups[] = [];
-  groupUser:GroupUser[] = [];
-
-  displayArray = new Array();
+  groupsChannels = new Array();
 
   menuDisplay:boolean = true;
 
@@ -31,23 +28,28 @@ export class GroupsCurrentComponent implements OnInit {
     this.pagePermissions();
 
     this.dbservices.groupsCurrent().subscribe((data)=>{
-
-      if (data.length < 0) {
+      if (data.length == 0) {
         let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
         error.innerText = "Database Error";
 
       } else {
         for (let i = 0; i < data.length; i++) {
-          this.dbservices.groupsOne(data[i].group_id).subscribe((data)=> {
-            this.displayArray.push(data[0]);
-            this.displayArray = this.groups;
-            console.log(data[0].name);
-            //is dropping one group off, something to do with array count
+          this.dbservices.groupsOne(data[i].group_id).subscribe((data)=>{
+            this.channelsGroups(data[0])
           });
-  
         }
-        
+
       }
+    });
+
+    console.log(this.groupsChannels);
+    console.log(typeof(this.groupsChannels));
+
+  }
+
+  channelsGroups(array) {
+    this.dbservices.channelsOne(array._id).subscribe((data)=>{
+      this.groupsChannels.push({"_id": array._id, "name": array.name, "createdBy_id": array.createdBy_id, "description": array.description, "groupPicture_id": array.groupPicture_id, "channels": data});
       
     });
 
@@ -55,7 +57,7 @@ export class GroupsCurrentComponent implements OnInit {
 
   deleteGroup(group_id) {
     this.dbservices.groupsDelete(group_id).subscribe((data)=> {
-      this.groups = data;
+      //this.groups = data; NEEDS ATTENTION
     })
   }
 

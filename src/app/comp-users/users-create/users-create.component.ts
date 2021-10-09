@@ -20,6 +20,8 @@ export class UsersCreateComponent implements OnInit {
 
   menuDisplay:boolean = true;
 
+  majorError:boolean = false;
+
   constructor(private router: Router, private dbservices:DatabaseService) { }
 
   ngOnInit(): void {

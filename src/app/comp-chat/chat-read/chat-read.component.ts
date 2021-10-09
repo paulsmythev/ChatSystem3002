@@ -32,6 +32,12 @@ export class ChatReadComponent implements OnInit {
   channel_description = "";
 
   ngOnInit(): void {
+    //clear error handling
+    let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
+    error.innerText = "";
+    let good:HTMLHeadingElement = document.getElementById("good") as HTMLHeadingElement;
+    good.innerText = "";
+
     //Get ActivatedRoute
     this.group_id = parseInt(this.route.snapshot.params["group"]);
     this.channel_id = parseInt(this.route.snapshot.params["channel"]);
@@ -50,6 +56,10 @@ export class ChatReadComponent implements OnInit {
     this.socketService.initSocket();
     this.ioConnection = this.socketService.onMessage().subscribe((message:string) => {
       this.messages.push(message,);
+
+      //passes value in messages array
+      this.ChatMessages.push(JSON.parse(message));
+
     });
   }
 
@@ -65,6 +75,12 @@ export class ChatReadComponent implements OnInit {
       } else {
         console.log("no message");
       }
+
+      //save in database
+      this.dbservices.chatCreate(this.newMessage).subscribe((data)=>{
+
+      });
+
     });
 
   }
@@ -102,7 +118,3 @@ export class ChatReadComponent implements OnInit {
   }
 
 }
-/*
-let good:HTMLHeadingElement = document.getElementById("good") as HTMLHeadingElement;
-    good.innerText = "";
-*/

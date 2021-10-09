@@ -59,10 +59,6 @@ export class LoginComponent implements OnInit {
           this.inputPassword = "";
           this.router.navigateByUrl("/groups/current");
 
-          this.dbservices.authRead().subscribe((data)=>{
-            console.log(data);
-          });
-
         }
 
 
@@ -73,6 +69,14 @@ export class LoginComponent implements OnInit {
   }
 
   authorisationCheck() {
+    this.dbservices.authRead().subscribe((data)=>{
+
+      if (data[0] == null) {
+        
+      } else {
+        this.router.navigateByUrl("/groups/current");
+      }
+    });
   }
 
 }

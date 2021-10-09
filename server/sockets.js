@@ -5,7 +5,6 @@ module.exports = {
 
             socket.on('message', (message)=> {
                 io.emit('message', message);
-                console.log(message);
             })
         });
     }

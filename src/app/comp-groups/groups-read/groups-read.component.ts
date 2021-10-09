@@ -21,9 +21,6 @@ export class GroupsReadComponent implements OnInit {
     this.pagePermissions();
 
     this.dbservices.groupsRead().subscribe((data)=>{
-      console.log(data);
-      //this.groups = data;
-
       if (data.authenticationStatus == false) {
         let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
         error.innerText = "Server Side Authentication Error";
