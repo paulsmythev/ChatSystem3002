@@ -6,7 +6,7 @@
   }
   .card {
     width: 1200px; /* Modded Here */
-    height: 800px; /* Modded Here */
+    height: 820px; /* Modded Here */
     background-color: #fff;
     background: linear-gradient(#f8f8f8, #fff);
     box-shadow: 0 8px 16px -8px rgba(0,0,0,0.4);
@@ -117,4 +117,11 @@
   #uploadpic {
     padding-top: 22px;
     padding-left: 10px;
+}
+.imageselector{
+  padding-top: 12px;
+}
+#instructions{
+  padding-top: 15px;
+  margin-left: 10px;
 }

@@ -15,6 +15,8 @@ export class GroupsCurrentComponent implements OnInit {
 
   groupsChannels = new Array();
 
+  channel_id:number = 0;
+
   menuDisplay:boolean = true;
 
   ngOnInit(): void {
@@ -27,6 +29,12 @@ export class GroupsCurrentComponent implements OnInit {
     //check user permissions
     this.pagePermissions();
 
+    //populate page data
+    this.pageDisplay();
+
+  }
+
+  pageDisplay() {
     this.dbservices.groupsCurrent().subscribe((data)=>{
       if (data.length == 0) {
         let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
@@ -35,34 +43,40 @@ export class GroupsCurrentComponent implements OnInit {
       } else {
         for (let i = 0; i < data.length; i++) {
           this.dbservices.groupsOne(data[i].group_id).subscribe((data)=>{
-            this.channelsGroups(data[0])
+            this.channelsGroups(data[0]);
           });
+
         }
 
       }
-    });
 
-    console.log(this.groupsChannels);
-    console.log(typeof(this.groupsChannels));
+    });
 
   }
 
   channelsGroups(array) {
-    this.dbservices.channelsOne(array._id).subscribe((data)=>{
-      this.groupsChannels.push({"_id": array._id, "name": array.name, "createdBy_id": array.createdBy_id, "description": array.description, "groupPicture_id": array.groupPicture_id, "channels": data});
-      
-    });
+    try {
+      this.dbservices.channelsOne(array._id).subscribe((data)=>{
+        this.groupsChannels.push({"_id": array._id, "name": array.name, "createdBy_id": array.createdBy_id, "description": array.description, "groupPicture_id": array.groupPicture_id, "channels": data});
+        
+      });
+
+    } catch {
+
+    } 
 
   }
 
   deleteGroup(group_id) {
     this.dbservices.groupsDelete(group_id).subscribe((data)=> {
-      //this.groups = data; NEEDS ATTENTION
+      this.groupsChannels = [];
+      this.pageDisplay();
     })
   }
 
-  joinChat(group_id, channel_id) {
-    this.router.navigateByUrl("/chat/read/" + group_id + "/" + channel_id);
+  joinChat(group_id) {
+    this.router.navigateByUrl("/chat/read/" + group_id + "/" +  this.channel_id);
+
   }
 
   pagePermissions() {

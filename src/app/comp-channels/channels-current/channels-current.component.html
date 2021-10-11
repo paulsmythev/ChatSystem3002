@@ -41,14 +41,13 @@
               <div class="general"><br>
                 <h1>{{channelsList.name | uppercase}}</h1>
                 <p>Description:<br>{{channelsList.description}}</p>
-                <p>Parent Group: {{channelsList.group_id}}</p>
   
                 <div class="d-flex justify-content-center mt-3 login_container">
-                  <button type="submit" name="button" class="btn btn-secondary" (click)="joinChat(channelsList._id, channelsList._id)">Join Chat</button>
+                  <button type="submit" name="button" class="btn btn-secondary" (click)="joinChat(channelsList.group_id, channelsList._id)">Join Chat</button>
                 </div>
   
                 <div class="d-flex justify-content-center mt-3 login_container">
-                  <button type="submit" name="button" class="btn btn-secondary" (click)="leaveChannel(channelsList._id)">Leave Channel</button>
+                  <button type="submit" name="button" class="btn btn-link" (click)="leaveChannel(channelsList._id)">Leave Channel</button>
                 </div>
   
               </div>

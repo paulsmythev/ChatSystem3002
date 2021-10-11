@@ -48,16 +48,16 @@
                 <h1>{{groupsList.name | uppercase}}</h1>
                 <p>Description:<br> {{groupsList.description}}</p>
                 
-
                 <div class="form-group">
                   <label for="exampleFormControlSelect1">List of Channels</label>
-                  <select class="form-control" id="dropSize">
-                    <!-- <option *ngFor="let channel of groupsChannels.channels" value="{{channel._id}}">{{channel.name}}</option> -->
+                  <select class="form-control" id="dropSize" [(ngModel)]="channel_id">
+                    <option *ngFor="let channel of groupsList.channels" value="{{channel._id}}">{{channel.name}}</option>
                   </select>
-                  <button type="button" class="btn btn-link" (click)="joinChat(groupsList._id, groupsList._id)">Join Chat</button>
+                  <br>
+                  <button type="button" class="btn btn-secondary" (click)="joinChat(groupsList._id)">Join Chat</button>
 
                   <div class="d-flex justify-content-center mt-3 login_container">
-                    <button type="submit" name="button" class="btn btn-secondary"(click)="deleteGroup(groupsList._id)">Delete Group</button>
+                    <button type="submit" name="button" class="btn btn-link"(click)="deleteGroup(groupsList._id)">Delete Group</button>
                   </div>
 
               </div>
