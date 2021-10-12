@@ -61,6 +61,11 @@
                                             <div class="font-weight-bold mb-1"><u>{{ChatMessage.username}}</u></div>
                                                 {{ChatMessage.message}}
                                             </div>
+
+                                            <div *ngIf="ChatMessage.imageStatus">
+                                                <a href="assets/images/chatpics/{{ChatMessage.imageName}}"><img src="assets/images/chatpics/{{ChatMessage.imageName}}" alt="{{ChatMessage.username}} Chat Picture" width="125px" height="100px"></a>
+                                            </div>
+                                            
                                         </div>
 
                                     </div>
@@ -71,11 +76,11 @@
                             <form>
                                 <div class="flex-grow-0 py-3 px-4 border-top">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Type your message">
-                                        <button class="btn btn-secondary">Send</button>
+                                        <input type="text" class="form-control" placeholder="Type your message" [(ngModel)]="messagecontent" name="messagecontent" id="messagecontent">
+                                        <button class="btn btn-secondary" (click)="chat()">Send</button>
                                     </div>
                                     <div class="input-group">
-                                        <input type="file" class="form-control-file imageselector" accept="image/png, image/jpeg, image/gif">
+                                        <input type="file" class="form-control-file imageselector" accept="image/png, image/jpeg, image/gif" (change)="onFileSelected($event)" name="uploadfile" id="uploadfile">
                                         <div id="instructions">Enter a message and select an images if you want and hit send.</div>
                                     </div>
                                 </div>
