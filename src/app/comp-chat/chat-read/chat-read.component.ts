@@ -4,6 +4,7 @@ import { SocketService } from '../../services/socket.service';
 import { DatabaseService } from "../../services/database.service";
 import { ChatMessages } from 'src/app/classes/chatMessages/chat-messages';
 import { ChatMessage } from 'src/app/classes/chatMessages/chat-messages';
+import { ImageService } from 'src/app/services/image.service';
 
 @Component({
   selector: 'app-chat-read',
@@ -12,7 +13,7 @@ import { ChatMessage } from 'src/app/classes/chatMessages/chat-messages';
 })
 export class ChatReadComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private socketService:SocketService, private dbservices:DatabaseService) { }
+  constructor(private route: ActivatedRoute, private socketService:SocketService, private dbservices:DatabaseService, private imageServices:ImageService) { }
 
   messagecontent:string = "";
   messages:string[] = [];
@@ -25,6 +26,10 @@ export class ChatReadComponent implements OnInit {
 
   group_id:number = 0;
   channel_id:number = 0;
+
+  //file handling
+  selectedFile;
+  imagePath = "";
 
   //page heading
   group_name:string = "";
@@ -64,6 +69,13 @@ export class ChatReadComponent implements OnInit {
   }
 
   chat() {
+
+    //check for file
+    if (this.selectedFile != null) {
+      this.onUpload();
+      
+    }
+
     //build chat message
     this.dbservices.authRead().subscribe((data)=>{
       let dateTime = new Date().toLocaleString();
@@ -114,6 +126,21 @@ export class ChatReadComponent implements OnInit {
     this.dbservices.channelsChannels(this.channel_id).subscribe((data)=>{
       this.channel_name = data[0].name;
       this.channel_description = data[0].description;
+    });
+  }
+
+  onFileSelected(event) {
+    this.selectedFile = event.target.files[0];
+  }
+
+  onUpload() {
+    console.log(this.selectedFile.name);
+    const fd = new FormData();
+    fd.append("image", this.selectedFile, this.selectedFile.name);
+    this.imageServices.imageUpload(fd).subscribe(res=>{
+      console.log(res);
+      //this.imagePath = res.data.filename;
+      //console.log(res.data.filename + " , " + res.data.size)
     });
   }
 

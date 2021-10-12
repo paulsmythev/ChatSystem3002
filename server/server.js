@@ -6,6 +6,9 @@ const cors = require("cors");
 const MongoClient = require("mongodb").MongoClient
 var ObjectID = require("mongodb").ObjectID;
 
+const formidable = require("formidable");
+const path = require("path");
+
 app.use(express.json());
 app.use(express.urlencoded({
     extended: true
@@ -60,8 +63,11 @@ MongoClient.connect(url, {maxPoolSize:10, useNewUrlParser: true, useUnifiedTopol
 
     require("./routes/chat-read.js")(db, app);
     require("./routes/chat-create.js")(db, app);
+
+    require("./routes/image-upload.js")(app, formidable);
     
     require("./listen.js")(http);
 
     require('./sockets.js').connect(io,3000);
 });
+
