@@ -26,10 +26,6 @@ export class ChatReadComponent implements OnInit {
   group_id:number = 0;
   channel_id:number = 0;
 
-  //file handling
-  selectedfile = null;
-  imagepath = "";
-
   //page heading
   group_name:string = "";
   channel_name:string ="";
@@ -67,7 +63,7 @@ export class ChatReadComponent implements OnInit {
     });
   }
 
-   chat() {
+  chat() {
     //build chat message
     this.dbservices.authRead().subscribe((data)=>{
       let dateTime = new Date().toLocaleString();
@@ -79,7 +75,7 @@ export class ChatReadComponent implements OnInit {
       } else {
         console.log("no message");
       }
-      
+
       //save in database
       this.dbservices.chatCreate(this.newMessage).subscribe((data)=>{
 
@@ -92,7 +88,7 @@ export class ChatReadComponent implements OnInit {
   chatHistory() {
     this.dbservices.chatRead(this.group_id, this.channel_id).subscribe((data)=>{
       this.ChatMessages = data[0].chatlog;
-      console.log(data[0].chatlog);
+
     });
   }
 
@@ -119,12 +115,6 @@ export class ChatReadComponent implements OnInit {
       this.channel_name = data[0].name;
       this.channel_description = data[0].description;
     });
-  }
-
-  onFileSelected(event) {
-    console.log(event);
-    this.selectedfile = event.target.files[0];
-
   }
 
 }
