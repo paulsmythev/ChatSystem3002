@@ -8,8 +8,12 @@ export class ImageService {
 
   constructor(private http:HttpClient) { }
 
-  imageUpload(fd) {
-    return this.http.post<any>("http://localhost:3000/api/image-upload", fd);
+  imageChatUpload(fd) {
+    return this.http.post<any>("http://localhost:3000/api/image-chat", fd);
+  }
+
+  imageUserUpload(fd) {
+    return this.http.post<any>("http://localhost:3000/api/image-user", fd);
   }
 
 }

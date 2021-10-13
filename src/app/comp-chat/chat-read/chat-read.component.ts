@@ -70,30 +70,65 @@ export class ChatReadComponent implements OnInit {
 
   chat() {
 
-    //check for file
-    if (this.selectedFile != null) {
+    //clear error handling
+    let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
+    error.innerText = "";
+    let good:HTMLHeadingElement = document.getElementById("good") as HTMLHeadingElement;
+    good.innerText = "";
+
+    if (this.messagecontent == "") {
+      let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
+      error.innerText = "Missing Information";
+
+    } else if (this.selectedFile != null) {
+        //build chat message
+        this.dbservices.authRead().subscribe((data)=>{
+          if (data.length == 0) {
+            let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
+            error.innerText = "Missing Authentication or Image handling Problem";
+          } else {
+            let dateTime = new Date().toLocaleString();
+            this.newMessage = new ChatMessage(data[0]._id, data[0].username, dateTime, this.messagecontent, data[0].profilepicture, true, this.selectedFile.name);
+
+            if (this.messagecontent) {
+              this.socketService.send(JSON.stringify(this.newMessage));
+              this.messagecontent = "";
+            } else {
+              console.log("no message");
+            }
+
+            //save in database
+            this.dbservices.chatCreate(this.newMessage).subscribe((data)=>{
+
+            });
+          }
+        });
       this.onUpload();
-      
-    }
 
-    //build chat message
-    this.dbservices.authRead().subscribe((data)=>{
-      let dateTime = new Date().toLocaleString();
-      this.newMessage = new ChatMessage(data[0]._id, data[0].username, dateTime, this.messagecontent, data[0].profilepicture, false, "");
-      
-      if (this.messagecontent) {
-        this.socketService.send(JSON.stringify(this.newMessage));
-        this.messagecontent = "";
-      } else {
-        console.log("no message");
-      }
+    } else {
+      //build chat message
+      this.dbservices.authRead().subscribe((data)=>{
+        if (data.length == 0) {
+          let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
+          error.innerText = "Missing Authentication or Image handling Problem";
+        } else {
+          let dateTime = new Date().toLocaleString();
+          this.newMessage = new ChatMessage(data[0]._id, data[0].username, dateTime, this.messagecontent, data[0].profilepicture, false, "");
 
-      //save in database
-      this.dbservices.chatCreate(this.newMessage).subscribe((data)=>{
+          if (this.messagecontent) {
+            this.socketService.send(JSON.stringify(this.newMessage));
+            this.messagecontent = "";
+          } else {
+            console.log("no message");
+          }
 
+          //save in database
+          this.dbservices.chatCreate(this.newMessage).subscribe((data)=>{
+
+          });
+        }
       });
-
-    });
+    }
 
   }
 
@@ -134,6 +169,17 @@ export class ChatReadComponent implements OnInit {
   }
 
   onUpload() {
+    const fd = new FormData();
+    fd.append("image", this.selectedFile, this.selectedFile.name);
+    this.imageServices.imageChatUpload(fd).subscribe(res=>{
+      this.imagePath = res.data.filename;
+      console.log(res.data.filename + " , " + res.data.size)
+    });
+  }
+
+}
+/*
+  onUpload() {
     console.log(this.selectedFile.name);
     const fd = new FormData();
     fd.append("image", this.selectedFile, this.selectedFile.name);
@@ -143,5 +189,4 @@ export class ChatReadComponent implements OnInit {
       //console.log(res.data.filename + " , " + res.data.size)
     });
   }
-
-}
+*/

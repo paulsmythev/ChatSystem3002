@@ -64,7 +64,8 @@ MongoClient.connect(url, {maxPoolSize:10, useNewUrlParser: true, useUnifiedTopol
     require("./routes/chat-read.js")(db, app);
     require("./routes/chat-create.js")(db, app);
 
-    require("./routes/image-upload.js")(app, formidable);
+    require("./routes/image-chat.js")(app, formidable);
+    require("./routes/image-user.js")(app, formidable);
     
     require("./listen.js")(http);
 
