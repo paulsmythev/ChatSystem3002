@@ -1,6 +1,8 @@
 //Used for adding new messages
 export class ChatMessage {
     constructor(
+        public group_id:number,
+        public channel_id:number,
         public user_id:number,
         public username:string,
         public timestamp:string,
@@ -14,6 +16,8 @@ export class ChatMessage {
 export class ChatMessages {
     constructor(
         public log_id:number,
+        public group_id:number,
+        public channel_id:number,
         public user_id:number,
         public username:string,
         public timestamp:string,

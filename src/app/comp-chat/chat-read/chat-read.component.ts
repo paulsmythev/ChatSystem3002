@@ -88,7 +88,7 @@ export class ChatReadComponent implements OnInit {
             error.innerText = "Missing Authentication or Image handling Problem";
           } else {
             let dateTime = new Date().toLocaleString();
-            this.newMessage = new ChatMessage(data[0]._id, data[0].username, dateTime, this.messagecontent, data[0].profilepicture, true, this.selectedFile.name);
+            this.newMessage = new ChatMessage(this.group_id, this.channel_id, data[0]._id, data[0].username, dateTime, this.messagecontent, data[0].profilepicture, true, this.selectedFile.name);
 
             if (this.messagecontent) {
               this.socketService.send(JSON.stringify(this.newMessage));
@@ -113,7 +113,7 @@ export class ChatReadComponent implements OnInit {
           error.innerText = "Missing Authentication or Image handling Problem";
         } else {
           let dateTime = new Date().toLocaleString();
-          this.newMessage = new ChatMessage(data[0]._id, data[0].username, dateTime, this.messagecontent, data[0].profilepicture, false, "");
+          this.newMessage = new ChatMessage(this.group_id, this.channel_id, data[0]._id, data[0].username, dateTime, this.messagecontent, data[0].profilepicture, false, "");
 
           if (this.messagecontent) {
             this.socketService.send(JSON.stringify(this.newMessage));
