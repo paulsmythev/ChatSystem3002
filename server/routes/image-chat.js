@@ -2,7 +2,6 @@ module.exports = function (app, formidable) {
     app.post("/api/image-chat", (req, res)=>{
         var form = new formidable.IncomingForm({uploadDir: "../src/assets/images/chatpics"});//"./userimages"
         form.KeepExtensions = true;
-        console.log("HIT");
 
         form.on("error", function(err) {
             throw err;

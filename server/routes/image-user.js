@@ -14,7 +14,7 @@ module.exports = function (app, formidable) {
         });
 
         form.on("fileBegin", function(name, file){
-            console.log(file.name.split('.').pop());
+            //console.log(file.name.split('.').pop());
             file.path = form.uploadDir + "/" + file.name;
         });
 

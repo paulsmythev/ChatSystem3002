@@ -114,7 +114,6 @@ export class DatabaseService {
   }
 
   chatCreate(particulars:ChatMessage) {
-    console.log(particulars);
     return this.http.post<any>("http://localhost:3000/api/chat-create", particulars)
   }
 }

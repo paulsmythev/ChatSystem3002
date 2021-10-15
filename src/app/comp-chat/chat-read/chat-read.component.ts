@@ -58,17 +58,28 @@ export class ChatReadComponent implements OnInit {
   }
 
   private initIoConnection(){
-    this.socketService.initSocket();
+    //this.socketService.initSocket();
+
+    let chat_id = {"group_id": this.group_id, "channel_id": this.channel_id}
+    this.socketService.chatStart(chat_id);
+
     this.ioConnection = this.socketService.onMessage().subscribe((message:string) => {
       this.messages.push(message,);
 
-      //passes value in messages array
-      this.ChatMessages.push(JSON.parse(message));
+      //checks for this channel
+      let localMessage = JSON.parse(message);
+
+      if (localMessage.group_id == this.group_id && localMessage.channel_id == this.channel_id) {
+        this.ChatMessages.push(localMessage);
+      }
       
     });
+   
   }
 
   chat() {
+
+    
 
     //clear error handling
     let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
@@ -103,6 +114,7 @@ export class ChatReadComponent implements OnInit {
             });
           }
         });
+
       this.onUpload();
 
     } else {
@@ -178,15 +190,3 @@ export class ChatReadComponent implements OnInit {
   }
 
 }
-/*
-  onUpload() {
-    console.log(this.selectedFile.name);
-    const fd = new FormData();
-    fd.append("image", this.selectedFile, this.selectedFile.name);
-    this.imageServices.imageUpload(fd).subscribe(res=>{
-      console.log(res);
-      //this.imagePath = res.data.filename;
-      //console.log(res.data.filename + " , " + res.data.size)
-    });
-  }
-*/

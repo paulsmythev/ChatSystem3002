@@ -28,4 +28,8 @@ export class SocketService {
     return observable;
   }
 
+  chatStart(chat_id) {
+    this.socket.emit('chatStart', chat_id);
+  }
+
 }

@@ -68,7 +68,6 @@ MongoClient.connect(url, {maxPoolSize:10, useNewUrlParser: true, useUnifiedTopol
     require("./routes/image-user.js")(app, formidable);
     
     require("./listen.js")(http);
-
-    require('./sockets.js').connect(io,3000);
 });
 
+//require('./sockets.js').connect(io ,3000);
