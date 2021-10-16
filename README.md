@@ -6,6 +6,24 @@ Paul Smyth S5012116 - 3813ICT Trimester 2 2021 - Assignment Phase 2
 
 The majority of the project was developed using local repository’s that were pushed to the remote repository at either a major millstone or a at the end of day. Branch’s where used to represent different versions of the project with each being merge with the master once complete.
 
+| Branch | Description |
+| :----: | :----:      | 
+| master |  |
+| additional_sockets |  |
+| image_uploading |  |
+| error_handling |  |
+| chat_sockets |  |
+| permissions |  |
+| database_corrections |  |
+| channels |  |
+| users |  |
+| authentication |  |
+| app_structure |  |
+| fresh_install |  |
+| spare |  |
+| spare |  |
+| spare |  |
+
 ## Data Structures
 
 The data structures are represented within the Mongo database collections accessed on the  server side. In total there are 6 listed below detailing their purpose,
