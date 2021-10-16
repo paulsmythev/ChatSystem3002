@@ -58,6 +58,25 @@ For the project to run correctly it uses several REST API features allowing for 
 
 ## Angular Architecture
 
+Components made up the majority of the Angular architecture and are sorted into several groups that represented the main site functions like users, authentication, groups, chat and channels. The actual components have been named after CRUD functions where possible with the naming conventions kept similar throughout the project.
+The services are stored together in the app directory and provide the interface between the client and the server. The largest was the database service that stores the API calls that are passed and receive information from get and post methods with the server. The image service enables for the uploading of user chat images and providing a profile picture for new users. The last service handles the message transfer of the socket.io chat function that allows the user to chat in multiple instances of a room or in many separate rooms.
+Classes featured predominantly thought-out project and are organised into a class folder in the app directory, inside the file there is a class representing many iterations used for displaying data sourced from the database and another used to pass in new instances to the database.
+<br>List of routes
+| Rotue      | Description |
+| :----:     | :----:      | 
+| Login | Provides the user a place to enter their login details. |
+| logout | Clears users from authorisation and returns them to login screen. |
+| users/create | Depending on user role, either a form to create a user or redirected. | 
+| users/current | Will show the details of the current login user. |
+| users/read | Depending on user role, show all users allowing for role change or deleting. |
+| groups/assigned | Depending on user role, attach user to groups. |
+| groups/create | Depending on user role, created new groups. |
+| groups/current | Shows a list of all group users belong to and drop-down list to enter chat. |
+| groups/read | Depending on user role, shows and provide admin functions. |
+| channels/create | Depending on user role, allow for new channel attached to group. |
+| channels/current | Shows all channels user is attached to. |
+| channels/read | Depending on user role, see all channels and allow for deletion. |
+| chat/read/:group/:channel | Available to all registered users, takes the parameters of the “group_id” and the “channel_id” which in return loads the correct chat room and its history. |
 
 
 ## Credits
