@@ -4,11 +4,18 @@ Paul Smyth S5012116 - 3813ICT Trimester 2 2021 - Assignment Phase 2
 
 ## Git Repository 
 
-
+The majority of the project was developed using local repository’s that were pushed to the remote repository at either a major millstone or a at the end of day. Branch’s where used to represent different versions of the project with each being merge with the master once complete.
 
 ## Data Structures
 
+The data structures are represented within the Mongo database collections accessed on the  server side. In total there are 6 listed below detailing their purpose,
 
+- Current_user – stores the current logged in user, accessible to both server and client.
+- Users – stores all users for the project and prevents adding a new user that has the same username. It also contains the role the user has within the site.
+- Groups – simply contains the basics with relational data store groups_users.
+- Channels – stores the basics of name, description and the group its associated with.
+- Groups_users – creates the relationship link between groups and users, once you know what group a user is apart of then the channels can be easily identified.
+- Chatlogs – contains information about the group and channel a one to many relationship within containing the individual chat logs.
 
 ## REST API
 
@@ -20,14 +27,14 @@ For the project to run correctly it uses several REST API features allowing for 
 | api/auth-logout (GET) | None  | JSON {"loggedOut":true} | Removes logged in user from DB |
 | api/auth-read (GET) | None | JSON user details from collection | Gets logged in users details and responds  |
 | api/users-create (POST) | New users details as class object 	 | JSON {"userExists":false, "userCreated":true} | Creates new user depending on username being original. |
-| api/users-read (GET) | None 	 | JSON User database collection	Returns every user in database |
-| api/users-delete (POST) | User id in format “_id” 	 | JSON User database collection	Deletes selected user and returns user collection |
-| api/users-update (POST) | User id in format “_id” and new role title 	 | JSON User database collection	Updates user role and returns user collection |
-| api/users-one (POST) | User id in format “_id” 	 | JSON 1 User database collection	Returns users details based on id |
-| api/channels-create (POST) | New channel details base on class object 	 | JSON {"channelExists":false, "channelCreated":true}	Creates new channel based of supplied information. |
-| api/channels-read (GET) | None 	 | JSON Channel database collection	Returns all channels in database |
+| api/users-read (GET) | None 	 | JSON User database collection | Returns every user in database |
+| api/users-delete (POST) | User id in format “_id” 	 | JSON User database collection | Deletes selected user and returns user collection |
+| api/users-update (POST) | User id in format “_id” and new role title 	 | JSON User database collection | Updates user role and returns user collection |
+| api/users-one (POST) | User id in format “_id” 	 | JSON 1 User database collection | Returns users details based on id |
+| api/channels-create (POST) | New channel details base on class object | JSON {"channelExists":false, "channelCreated":true} | Creates new channel based of supplied information. |
+| api/channels-read (GET) | None 	 | JSON Channel database collection | turns all channels in database |
 | api/channels-delete (POST) | Channel id in format “_id” 	 | JSON Channel database collection | Deletes channel based off supplied id |
-| api/channels-current (GET) | None (GET)	 | JSON Channel database collection | Returns the channels of current user |
+| api/channels-current (GET) | None | JSON Channel database collection | Returns the channels of current user |
 | api/channels-channel (GET) | Channel id in format “_id”	 | JSON Channel database collection | Returns one channel based id |
 | api/groups-read (GET) | None	 | JSON Group database collection | Returns all groups in database |
 | api/groups-create (post) | New group details based on class objects	 | JSON {"groupsExists":false, "groupCreated":true} | Creates new group depending on group name being original |
