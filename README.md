@@ -17,6 +17,32 @@ For the project to run correctly it uses several REST API features allowing for 
 | Rotue      | Parameters | Returned Values     | Description     |
 | :----:       | :----:       | :----:          |:----:            |
 | api/auth-login (GET) | Username and password as class object | JSON {"userLogin":true} | Compares credentials to DB |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
 
 ## Angular Architecture
 
