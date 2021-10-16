@@ -12,8 +12,10 @@ Paul Smyth S5012116 - 3813ICT Trimester 2 2021 - Assignment Phase 2
 
 ## REST API
 
+For the project to run correctly it uses several REST API features allowing for the client and server to communicate through the use of JSON and http methods. Below is a breakdown of each route used and brief description on how it works.
+
 | Rotue      | Parameters | Returned Values     | Description     |
-| :---       | :---       | :---                |:---             |
+| :----:       | :----:       | :----:          |:----:            |
 | api/auth-login | Username and password as class object (GET) | JSON {"userLogin":true} | Compares credentials to DB |
 
 ## Angular Architecture
