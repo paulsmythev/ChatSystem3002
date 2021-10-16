@@ -12,7 +12,9 @@ Paul Smyth S5012116 - 3813ICT Trimester 2 2021 - Assignment Phase 2
 
 ## REST API
 
-
+| Rotue      | Parameters | Returned Values     | Description     |
+| :---       | :---       | :---                |:---             |
+| api/auth-login | Username and password as class object (GET) | JSON {"userLogin":true} | Compares credentials to DB |
 
 ## Angular Architecture
 
