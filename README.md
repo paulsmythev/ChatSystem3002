@@ -81,7 +81,7 @@ Classes featured predominantly thought-out project and are organised into a clas
 
 ## Credits
 
-Images and icons sauced from https://www.iconfinder.com/ under free for commercial use.
+Images and icons sauced from https://www.iconfinder.com/ under free for commercial use.<br>
 Layouts generated from ideas from https://www.bootdey.com/snippets/view/Css-Player-User-Cards 
 
 Paul Smyth - S5012116
