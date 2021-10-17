@@ -116,4 +116,8 @@ export class DatabaseService {
   chatCreate(particulars:ChatMessage) {
     return this.http.post<any>("http://localhost:3000/api/chat-create", particulars)
   }
+
+  chatlogChannel(group_channel) {
+    return this.http.post<any>("http://localhost:3000/api/chatlog-channel", group_channel);
+  }
 }

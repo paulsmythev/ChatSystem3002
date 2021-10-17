@@ -58,7 +58,7 @@ export class ChatReadComponent implements OnInit {
   }
 
   private initIoConnection(){
-    //this.socketService.initSocket();
+    this.socketService.initSocket();
 
     let chat_id = {"group_id": this.group_id, "channel_id": this.channel_id}
     this.socketService.chatStart(chat_id);

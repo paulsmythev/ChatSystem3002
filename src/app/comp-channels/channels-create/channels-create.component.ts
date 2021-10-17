@@ -37,13 +37,16 @@ export class ChannelsCreateComponent implements OnInit {
     good.innerText = "";
 
     this.dbservices.groupsRead().subscribe((data)=> {
-      this.groups = data;
+      this.groups = data;  
 
     });
+    
   }
 
   addnewChannel(event) {
     event.preventDefault();
+
+    let group_number = Number(this.inputGroup_id);
 
     //clear errors
     let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
@@ -64,17 +67,21 @@ export class ChannelsCreateComponent implements OnInit {
 
       this.randomPic = this.imageGen() + ".png"
 
-      this.newChannel = new Channel(this.inputGroup_id, this.inputName, this.createdBy_id, this.inputDescription, this.randomPic);
+      this.newChannel = new Channel(group_number, this.inputName.toLowerCase(), this.createdBy_id, this.inputDescription, this.randomPic);
     
       this.dbservices.channelsCreate(this.newChannel).subscribe((data)=> {
-        if (data.channelExists == true && data.groupCreated == false) {
+        if (data.acknowledged == false) {
           let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
           error.innerText = "Group already exists, try a new one";
 
-        } else if (data.channelExists == false, data.channelCreated == true) {
+        } else if (data.acknowledged == true) {
           let good:HTMLHeadingElement = document.getElementById("good") as HTMLHeadingElement;
           good.innerText = "Group Created";
+
+          this.generateChatlog(group_number, data.insertedId);
+
         }
+
       });
 
     }
@@ -97,6 +104,13 @@ export class ChannelsCreateComponent implements OnInit {
       }
     });
 
+  }
+
+  generateChatlog(group_id, channel_id) {
+    let group_channel = {"group_id":group_id , "channel_id":channel_id}
+    this.dbservices.chatlogChannel(group_channel).subscribe((data)=>{
+      console.log(data);
+    });
   }
 
 }
