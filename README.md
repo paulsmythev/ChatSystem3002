@@ -102,4 +102,8 @@ Classes featured predominantly thought-out project and are organised into a clas
 Images and icons sauced from https://www.iconfinder.com/ under free for commercial use.<br>
 Layouts generated from ideas from https://www.bootdey.com/snippets/view/Css-Player-User-Cards 
 
+<<<<<<< HEAD
 Paul Smyth - S5012116
+=======
+Paul Smyth - S5012116
+>>>>>>> c2780cba1670f8a727a9bc3266085c04d035c256
