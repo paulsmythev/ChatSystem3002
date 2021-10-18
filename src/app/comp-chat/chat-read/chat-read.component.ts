@@ -5,6 +5,7 @@ import { DatabaseService } from "../../services/database.service";
 import { ChatMessages } from 'src/app/classes/chatMessages/chat-messages';
 import { ChatMessage } from 'src/app/classes/chatMessages/chat-messages';
 import { ImageService } from 'src/app/services/image.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chat-read',
@@ -13,7 +14,7 @@ import { ImageService } from 'src/app/services/image.service';
 })
 export class ChatReadComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private socketService:SocketService, private dbservices:DatabaseService, private imageServices:ImageService) { }
+  constructor(private route: ActivatedRoute, private socketService:SocketService, private dbservices:DatabaseService, private imageServices:ImageService, private router: Router) { }
 
   messagecontent:string = "";
   messages:string[] = [];
@@ -37,6 +38,10 @@ export class ChatReadComponent implements OnInit {
   channel_description = "";
 
   ngOnInit(): void {
+
+    //check user permissions
+    this.pagePermissions();
+
     //clear error handling
     let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
     error.innerText = "";
@@ -58,6 +63,7 @@ export class ChatReadComponent implements OnInit {
   }
 
   private initIoConnection(){
+    //Starts the socket connection
     this.socketService.initSocket();
 
     let chat_id = {"group_id": this.group_id, "channel_id": this.channel_id}
@@ -79,14 +85,13 @@ export class ChatReadComponent implements OnInit {
 
   chat() {
 
-    
-
     //clear error handling
     let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
     error.innerText = "";
     let good:HTMLHeadingElement = document.getElementById("good") as HTMLHeadingElement;
     good.innerText = "";
 
+    //Takes in new chat messages and sends it to the sockets and save a record in the history
     if (this.messagecontent == "") {
       let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
       error.innerText = "Missing Information";
@@ -152,6 +157,7 @@ export class ChatReadComponent implements OnInit {
   }
 
   groupUsers() {
+    //Loads in previous history
     this.dbservices.groupUsers(this.group_id).subscribe((data)=>{
       for (let i = 0; i < data.length; i++) {
         this.dbservices.usersOne(data[i].user_id).subscribe((data)=>{
@@ -167,6 +173,7 @@ export class ChatReadComponent implements OnInit {
   }
 
   pageinfo() {
+    //Get the information about the group and channel
     this.dbservices.groupsOne(this.group_id).subscribe((data)=>{
       this.group_name = data[0].name;
     });
@@ -177,15 +184,27 @@ export class ChatReadComponent implements OnInit {
   }
 
   onFileSelected(event) {
+    //Collects the image
     this.selectedFile = event.target.files[0];
   }
 
   onUpload() {
+    //Process the image upload
     const fd = new FormData();
     fd.append("image", this.selectedFile, this.selectedFile.name);
     this.imageServices.imageChatUpload(fd).subscribe(res=>{
       this.imagePath = res.data.filename;
       console.log(res.data.filename + " , " + res.data.size)
+    });
+  }
+
+  pagePermissions() {
+    //Checks user is authorised to preform action or view web page
+    this.dbservices.authRead().subscribe((data)=> {
+      if (data.length <= 0) {
+      this.router.navigateByUrl("/login");
+  
+      }
     });
   }
 

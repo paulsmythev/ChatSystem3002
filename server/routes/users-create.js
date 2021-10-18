@@ -16,10 +16,12 @@ module.exports = function(db, app) {
                 res.send({"userExists":true, "userCreated":false});
 
             } else {
+                //Locates next user id
                 collection.find({}, { _id: 1, array: { $slice: -1 } }).toArray(function(err, items){
                     nextId = items.length+1;
                     let insertUser = ({"_id":nextId, "email":email, "username":username, "password":password, "role":role, "profilepicture":profilepicture});
 
+                    //Inserts new user
                     collection.insertOne(insertUser,(err, dbres)=>{
                         res.send({"userExists":false, "userCreated":true});
 

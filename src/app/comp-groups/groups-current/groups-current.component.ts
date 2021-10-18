@@ -35,19 +35,24 @@ export class GroupsCurrentComponent implements OnInit {
   }
 
   pageDisplay() {
+    //Displays all groups in the database
     this.dbservices.groupsCurrent().subscribe((data)=>{
-      if (data.length == 0) {
-        let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
-        error.innerText = "Database Error";
-
+      if (data.authError == true) {
+        this.router.navigateByUrl("/login");
       } else {
-        for (let i = 0; i < data.length; i++) {
-          this.dbservices.groupsOne(data[i].group_id).subscribe((data)=>{
-            this.channelsGroups(data[0]);
-          });
-
+        if (data.length == 0) {
+          let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
+          error.innerText = "Database Error";
+  
+        } else {
+          for (let i = 0; i < data.length; i++) {
+            this.dbservices.groupsOne(data[i].group_id).subscribe((data)=>{
+              this.channelsGroups(data[0]);
+            });
+  
+          }
+  
         }
-
       }
 
     });
@@ -55,6 +60,7 @@ export class GroupsCurrentComponent implements OnInit {
   }
 
   channelsGroups(array) {
+    //Collects all channels part of that group
     try {
       this.dbservices.channelsOne(array._id).subscribe((data)=>{
         this.groupsChannels.push({"_id": array._id, "name": array.name, "createdBy_id": array.createdBy_id, "description": array.description, "groupPicture_id": array.groupPicture_id, "channels": data});
@@ -68,6 +74,7 @@ export class GroupsCurrentComponent implements OnInit {
   }
 
   deleteGroup(group_id) {
+    //Deletes a group
     this.dbservices.groupsDelete(group_id).subscribe((data)=> {
       this.groupsChannels = [];
       this.pageDisplay();
@@ -75,11 +82,13 @@ export class GroupsCurrentComponent implements OnInit {
   }
 
   joinChat(group_id) {
+    //Creates the route for the chat interface
     this.router.navigateByUrl("/chat/read/" + group_id + "/" +  this.channel_id);
 
   }
 
   pagePermissions() {
+    //Checks user is authorised to preform action or view web page
     this.dbservices.authRead().subscribe((data)=> {
       if (data.length <= 0) {
         this.router.navigateByUrl("/login");

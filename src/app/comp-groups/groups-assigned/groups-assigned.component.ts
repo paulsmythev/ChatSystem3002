@@ -14,6 +14,8 @@ export class GroupsAssignedComponent implements OnInit {
 
   constructor(private router: Router, private dbservices:DatabaseService) { }
 
+  //Creates the relationship between groups and users
+
   groups:Groups[] = [];
   users:Users[] = [];
 
@@ -36,6 +38,7 @@ export class GroupsAssignedComponent implements OnInit {
     //check user permissions
     this.pagePermissions();
 
+    //Get a list of the groups to show in a drop down 
     this.dbservices.groupsRead().subscribe((data)=> {
       if (data.length == 0) {
         let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
@@ -46,6 +49,7 @@ export class GroupsAssignedComponent implements OnInit {
 
     });
 
+    //Get a list of the users to show in a drop down 
     this.dbservices.usersRead().subscribe((data)=>{
       if (data.length == 0) {
         let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
@@ -58,6 +62,8 @@ export class GroupsAssignedComponent implements OnInit {
   }
 
   attachUser() {
+    //Creates the relationship in the database
+
     //clear error handling
     let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
     error.innerText = "";
@@ -92,12 +98,13 @@ export class GroupsAssignedComponent implements OnInit {
   }
 
   pagePermissions() {
+    //Checks user is authorised to preform action or view web page
     this.dbservices.authRead().subscribe((data)=> {
       if (data.length <= 0) {
         this.router.navigateByUrl("/login");
 
       } else if (data[0].role == "Group Assistant" || data[0].role == "User") {
-        this.router.navigateByUrl("/users/current");
+        this.router.navigateByUrl("/groups/current");
         this.menuDisplay = false;
         
       }

@@ -12,6 +12,8 @@ export class UsersCurrentComponent implements OnInit {
 
   constructor(private router: Router, private dbservices:DatabaseService) { }
 
+  //Displays the currently logged in users details
+
   authUserStorage: any = {};
   authUserMenu:boolean = false;
 
@@ -33,14 +35,20 @@ export class UsersCurrentComponent implements OnInit {
 
   pullAuthuser() {
     this.dbservices.authRead().subscribe((data)=>{
-      this.username = data[0].username;
-      this.email = data[0].email;
-      this.role = data[0].role;
-      this.profilepicture = data[0].profilepicture;
+      if (data.length != 0) {
+        this.username = data[0].username;
+        this.email = data[0].email;
+        this.role = data[0].role;
+        this.profilepicture = data[0].profilepicture;
+      } else {
+        this.router.navigateByUrl("/login");
+      }
+
     });
   }
 
   pagePermissions() {
+    //Checks user is authorised to preform action or view web page
     this.dbservices.authRead().subscribe((data)=> {
       if (data.length <= 0) {
         this.router.navigateByUrl("/login");

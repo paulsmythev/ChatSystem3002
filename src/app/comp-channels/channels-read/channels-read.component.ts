@@ -41,16 +41,23 @@ export class ChannelsReadComponent implements OnInit {
   }
 
   deleteGroup(id) {
+    //Deletes the group
     this.dbservices.channelsDelete(id).subscribe((data)=> {
-      this.channels = data;
+      if (data.authError == true) {
+        this.router.navigateByUrl("/login");
+      } else {
+        this.channels = data;
+      }
     });
   }
 
   chatRoom(group_id, channel_id) {
+     //Provides the route for the chat room
     this.router.navigateByUrl("/chat/read/" + group_id + "/" + channel_id);
   }
 
   pagePermissions() {
+    //Checks user is authorised to preform action or view web page
     this.dbservices.authRead().subscribe((data)=> {
       if (data.length <= 0) {
         this.router.navigateByUrl("/login");

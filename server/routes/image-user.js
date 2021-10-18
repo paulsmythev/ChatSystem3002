@@ -3,6 +3,8 @@ module.exports = function (app, formidable) {
         var form = new formidable.IncomingForm({uploadDir: "../src/assets/images/profilepics"});//"./userimages"
         form.KeepExtensions = true;
 
+        //Uploads image that has been selected as new profile pic for a new user
+
         form.on("error", function(err) {
             throw err;
             res.send({

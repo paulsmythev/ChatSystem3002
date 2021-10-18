@@ -1,6 +1,7 @@
+//Class for handing Authentication/login details
 export class Authentication {
     constructor(
         public identification:string,
-        public password:string //Maybe set to private
+        public password:string
     ) {}
 }

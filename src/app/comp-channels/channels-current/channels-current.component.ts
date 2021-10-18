@@ -37,11 +37,16 @@ export class ChannelsCurrentComponent implements OnInit {
   }
 
   pageDisplay() {
+    //Returns all the channels the current users is a member of.
     this.dbservices.groupsCurrent().subscribe((data)=> {
-      for (let i = 0; i < data.length; i++) {
-        this.channelsGroups(data[i]);
+      if (data.authError == true) {
+        this.router.navigateByUrl("/login");
+      } else {
+        for (let i = 0; i < data.length; i++) {
+          this.channelsGroups(data[i]);
+        }
       }
-      
+  
     });
   }
 
@@ -59,6 +64,7 @@ export class ChannelsCurrentComponent implements OnInit {
   }
 
   leaveChannel(channels_id) {
+    //Deletes the channel
     this.dbservices.channelsDelete(channels_id).subscribe((data)=> {
       this.channels = [];
       this.pageDisplay();
@@ -67,11 +73,13 @@ export class ChannelsCurrentComponent implements OnInit {
   }
 
   joinChat(group_id, channel_id) {
-    //this.router.navigateByUrl("/chat/read/" + group_id + "/" + channel_id);
+    //Provides the route for the chat room
+    this.router.navigateByUrl("/chat/read/" + group_id + "/" + channel_id);
 
   }
 
   pagePermissions() {
+    //Checks user is authorised to preform action or view web page
     this.dbservices.authRead().subscribe((data)=> {
       if (data.length <= 0) {
         this.router.navigateByUrl("/login");

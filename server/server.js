@@ -1,3 +1,4 @@
+//Library’s needed to run the server 
 const express = require("express");
 const app = express();
 const http = require("http").Server(app);
@@ -14,6 +15,7 @@ app.use(express.urlencoded({
     extended: true
 }));
 
+//Socket CORS requirements 
 const io = require("socket.io")(http, {
     cors: {
         origin: "http://localhost:4200",
@@ -21,6 +23,9 @@ const io = require("socket.io")(http, {
     }
 });
 
+require('./sockets.js').connect(io ,3000);
+
+//More CORS
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, OPTIONS");
@@ -28,6 +33,7 @@ app.use(function(req, res, next) {
     next();
 });
 
+//Setup and connect to mongo dB 
 app.use(cors());
 app.use(bodyParser.json());
 const url = "mongodb://localhost:27017";
@@ -70,5 +76,3 @@ MongoClient.connect(url, {maxPoolSize:10, useNewUrlParser: true, useUnifiedTopol
     
     require("./listen.js")(http);
 });
-
-require('./sockets.js').connect(io ,3000);

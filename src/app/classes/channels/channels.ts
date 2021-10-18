@@ -9,7 +9,7 @@ export class Channels {
         public groupPicture_id:string,
     ) {}
 }
-//Used for adding new groups
+//Used for adding new channels
 export class Channel {
     constructor(
         public group_id:number,

@@ -22,8 +22,10 @@ export class UsersReadComponent implements OnInit {
 
   constructor(private router: Router, private dbservices:DatabaseService) { }
 
-  ngOnInit(): void {
+  //Display all users in database
 
+  ngOnInit(): void {
+    
     //check user permissions
     this.pagePermissions();
 
@@ -39,6 +41,7 @@ export class UsersReadComponent implements OnInit {
   }
 
   deleteUser(id) {
+    //Deletes a user, hiding the super account
     if (confirm("Are you sure you want to delete this user?")) {
       this.dbservices.usersDelete(id).subscribe((data)=> {
         this.users = data;
@@ -54,6 +57,7 @@ export class UsersReadComponent implements OnInit {
   }
 
   updateUser(id) {
+    //Update user role, hiding the super account
     this.dbservices.usersUpdate(id, this.userRoleChange).subscribe((data)=> {
       this.users = data;
       
@@ -65,6 +69,7 @@ export class UsersReadComponent implements OnInit {
   }
 
   pagePermissions() {
+    //Checks user is authorised to preform action or view web page
     this.dbservices.authRead().subscribe((data)=> {
       if (data.length <= 0) {
         this.router.navigateByUrl("/login");
@@ -73,6 +78,9 @@ export class UsersReadComponent implements OnInit {
         this.router.navigateByUrl("/users/current");
         this.menuDisplay = false;
         
+        
+      } else if (data[0].role == "Super Administrator") {
+        this.promoteLevel = true;
       }
     });
 

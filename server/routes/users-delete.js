@@ -4,6 +4,7 @@ module.exports = function(db, app, ObjectID) {
 
         const collection = db.collection("users");
         
+        //Deletes user based off user _id
         collection.deleteOne({_id:delete_id}, (err, docs)=> {
             collection.find({}).toArray((err, data)=>{
                 res.send(data);

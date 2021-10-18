@@ -3,6 +3,8 @@ module.exports = function (app, formidable) {
         var form = new formidable.IncomingForm({uploadDir: "../src/assets/images/chatpics"});//"./userimages"
         form.KeepExtensions = true;
 
+        //Uploads image that has been posted in  a chat room
+
         form.on("error", function(err) {
             throw err;
             res.send({

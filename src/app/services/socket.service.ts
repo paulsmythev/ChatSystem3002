@@ -17,9 +17,13 @@ export class SocketService {
     this.socket = io(SERVER_URL);
   }
 
+  //Sends out messages 
+
   public send(message:string): void {
     this.socket.emit('message', message);
   }
+
+  //Receives messages
 
   public onMessage(): Observable<any> {
     let observable = new Observable(observer=>{
@@ -27,6 +31,8 @@ export class SocketService {
     });
     return observable;
   }
+
+  //testing functionality
 
   chatStart(chat_id) {
     this.socket.emit('chatStart', chat_id);

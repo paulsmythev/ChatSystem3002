@@ -12,6 +12,8 @@ export class GroupsCreateComponent implements OnInit {
 
   constructor(private router: Router, private dbservices:DatabaseService) { }
 
+  //Creates a new groups
+
   newGroup:Group;
 
   inputName:string = "";
@@ -66,10 +68,12 @@ export class GroupsCreateComponent implements OnInit {
   }
 
   imageGen() {
+    //Gets a random image to set as a profile pic
     return Math.floor(Math.random() * 5) + 1;
   }
 
   pagePermissions() {
+    //Checks user is authorised to preform action or view web page
     this.dbservices.authRead().subscribe((data)=> {
       if (data.length <= 0) {
         this.router.navigateByUrl("/login");

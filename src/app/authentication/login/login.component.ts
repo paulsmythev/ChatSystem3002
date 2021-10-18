@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
   }
 
   userLogin(event) {
+    //Connects via the server to verify user details
     event.preventDefault();
 
     if (this.inputIdentification == "") {
@@ -69,6 +70,7 @@ export class LoginComponent implements OnInit {
   }
 
   authorisationCheck() {
+    //Checks user is authorised to preform action or view web page
     this.dbservices.authRead().subscribe((data)=>{
 
       if (data[0] == null) {

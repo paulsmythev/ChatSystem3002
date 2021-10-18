@@ -34,6 +34,7 @@ export class GroupsReadComponent implements OnInit {
   }
 
   pageDisplay() {
+    //Collects all channels part of that group
     this.dbservices.groupsRead().subscribe((data)=>{//groupsCurrent
       if (data.length == 0) {
         let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
@@ -60,6 +61,7 @@ export class GroupsReadComponent implements OnInit {
   }
 
   deleteGroup(group_id) {
+    //Deletes a group
     this.dbservices.groupsDelete(group_id).subscribe((data)=> {
       this.groupsChannels = [];
       this.pageDisplay();
@@ -67,10 +69,12 @@ export class GroupsReadComponent implements OnInit {
   }
 
   joinChat(group_id) {
+    //Creates the route for the chat interface
     this.router.navigateByUrl("/chat/read/" + group_id + "/" + this.channel_id);
   }
 
   pagePermissions() {
+    //Checks user is authorised to preform action or view web page
     this.dbservices.authRead().subscribe((data)=> {
       if (data.length <= 0) {
         this.router.navigateByUrl("/login");

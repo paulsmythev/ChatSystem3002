@@ -3,11 +3,12 @@ module.exports = function(db, app) {
         let identification = req.body.identification;
         let password = req.body.password;
 
-        //force logged in user out
+        //If signing in, force current user out, shouldn’t happen but prevents errors
         db.collection("current_user").drop(function(err, delOK) {
 
         });
 
+        //Checks username and password match database records
         const collection = db.collection("users");
         collection.find({"username":identification, "password":password}).toArray((err, data)=> {
             if (data.length > 0) {

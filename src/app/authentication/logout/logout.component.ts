@@ -12,7 +12,7 @@ export class LogoutComponent implements OnInit {
   constructor(private router: Router, private dbservices:DatabaseService) { }
 
   ngOnInit(): void {
-    //remove local storage and return user to login page
+    //Removes users authorisation and redirects to login page
     localStorage.removeItem("authUser");
     this.router.navigateByUrl("/login");
 

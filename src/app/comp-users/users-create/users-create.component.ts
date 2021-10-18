@@ -42,6 +42,7 @@ export class UsersCreateComponent implements OnInit {
   }
 
   addnewUser(event) {
+    //Handles the creation of new users
     event.preventDefault();
     
     if (this.selectedFile != null) {
@@ -100,6 +101,7 @@ export class UsersCreateComponent implements OnInit {
   }
 
   onFileSelected(event) {
+    //Handles the picture for new users
     this.selectedFile = event.target.files[0];
   }
 
@@ -113,6 +115,7 @@ export class UsersCreateComponent implements OnInit {
   }
 
   pagePermissions() {
+    //Uploads the image
     this.dbservices.authRead().subscribe((data)=> {
       if (data.length <= 0) {
         this.router.navigateByUrl("/login");

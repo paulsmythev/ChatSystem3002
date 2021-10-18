@@ -36,6 +36,7 @@ export class ChannelsCreateComponent implements OnInit {
     let good:HTMLHeadingElement = document.getElementById("good") as HTMLHeadingElement;
     good.innerText = "";
 
+    //Populates drop down list
     this.dbservices.groupsRead().subscribe((data)=> {
       this.groups = data;  
 
@@ -80,6 +81,13 @@ export class ChannelsCreateComponent implements OnInit {
 
           this.generateChatlog(group_number, data.insertedId);
 
+          this.inputName = "";
+          this.inputGroup_id = 0;
+          this.inputDescription = "";
+
+        } else if (data.authError == true) {
+          let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
+          error.innerText = "User is not authorised to preform this takee";
         }
 
       });
@@ -89,10 +97,12 @@ export class ChannelsCreateComponent implements OnInit {
   }
 
   imageGen() {
+    //Selects a random image to be used as channel pic 
     return Math.floor(Math.random() * 50) + 1;
   }
 
   pagePermissions() {
+    //Checks user is authorised to preform action or view web page
     this.dbservices.authRead().subscribe((data)=> {
       if (data.length <= 0) {
         this.router.navigateByUrl("/login");
@@ -107,9 +117,10 @@ export class ChannelsCreateComponent implements OnInit {
   }
 
   generateChatlog(group_id, channel_id) {
+    //Creates associated chatlog to ensure chat works for the channel
     let group_channel = {"group_id":group_id , "channel_id":channel_id}
     this.dbservices.chatlogChannel(group_channel).subscribe((data)=>{
-      console.log(data);
+    
     });
   }
 
