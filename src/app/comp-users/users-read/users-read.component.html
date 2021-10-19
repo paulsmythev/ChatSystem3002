@@ -23,9 +23,13 @@
       <div class="col-1"></div>
       <div class="col-10">
 
+        <div class="d-flex justify-content-center feedback" id="good"></div>
+        <div class="d-flex justify-content-center feedback" id="bad"></div>
+
         <div class="d-flex justify-content-center feedback" id="authError"></div>
   
         <div *ngFor="let usersList of users">
+          
           <!------ Card Start -------->
           <div class="text-center" id="groupshow">
             <div class="card green">

@@ -47,23 +47,27 @@ export class GroupsCreateComponent implements OnInit {
       let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
       error.innerText = "Missing Information";
 
+    } else {
+      this.randomPic = "g_" + this.imageGen() + ".png"
+
+      this.newGroup = new Group(this.inputName.toLocaleLowerCase(), this.createdBy_id, this.inputDescription, this.randomPic);
+  
+      this.dbservices.groupsCreate(this.newGroup).subscribe((data)=>{
+        if (data.groupsExists == true && data.groupCreated == false) {
+          let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
+          error.innerText = "Group already exists, try a new one";
+  
+        } else if (data.groupsExists == false, data.groupCreated == true) {
+          let good:HTMLHeadingElement = document.getElementById("good") as HTMLHeadingElement;
+          good.innerText = "Group Created";
+        }
+
+        this.inputName = "";
+        this.inputDescription = "";
+        
+      });
+
     }
-
-    this.randomPic = "g_" + this.imageGen() + ".png"
-
-    this.newGroup = new Group(this.inputName.toLocaleLowerCase(), this.createdBy_id, this.inputDescription, this.randomPic);
-
-    this.dbservices.groupsCreate(this.newGroup).subscribe((data)=>{
-      if (data.groupsExists == true && data.groupCreated == false) {
-        let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
-        error.innerText = "Group already exists, try a new one";
-
-      } else if (data.groupsExists == false, data.groupCreated == true) {
-        let good:HTMLHeadingElement = document.getElementById("good") as HTMLHeadingElement;
-        good.innerText = "Group Created";
-      }
-      
-    });
 
   }
 

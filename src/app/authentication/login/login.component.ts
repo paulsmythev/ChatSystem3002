@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     //Connects via the server to verify user details
     event.preventDefault();
 
-    if (this.inputIdentification == "") {
+    if (this.inputIdentification == "" || this.inputPassword == "") {
       let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
       error.innerText = "Missing Information";
 

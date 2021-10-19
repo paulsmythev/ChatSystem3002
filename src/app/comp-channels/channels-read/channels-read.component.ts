@@ -62,7 +62,7 @@ export class ChannelsReadComponent implements OnInit {
       if (data.length <= 0) {
         this.router.navigateByUrl("/login");
 
-      } else if (data[0].role == "User") {
+      } else if (data[0].role == "Group Assistant" || data[0].role == "User") {
         this.router.navigateByUrl("/channels/current");
         this.menuDisplay = false;
         

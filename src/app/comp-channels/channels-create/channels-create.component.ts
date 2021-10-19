@@ -71,7 +71,7 @@ export class ChannelsCreateComponent implements OnInit {
       this.newChannel = new Channel(group_number, this.inputName.toLowerCase(), this.createdBy_id, this.inputDescription, this.randomPic);
     
       this.dbservices.channelsCreate(this.newChannel).subscribe((data)=> {
-        if (data.acknowledged == false) {
+        if (data.channelExists == true) {
           let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
           error.innerText = "Group already exists, try a new one";
 
@@ -87,7 +87,7 @@ export class ChannelsCreateComponent implements OnInit {
 
         } else if (data.authError == true) {
           let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
-          error.innerText = "User is not authorised to preform this takee";
+          error.innerText = "User is not authorised to preform this task";
         }
 
       });

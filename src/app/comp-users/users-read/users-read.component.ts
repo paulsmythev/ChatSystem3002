@@ -25,6 +25,12 @@ export class UsersReadComponent implements OnInit {
   //Display all users in database
 
   ngOnInit(): void {
+
+    //clear error handling
+    let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
+    error.innerText = "";
+    let good:HTMLHeadingElement = document.getElementById("good") as HTMLHeadingElement;
+    good.innerText = "";
     
     //check user permissions
     this.pagePermissions();
@@ -58,13 +64,21 @@ export class UsersReadComponent implements OnInit {
 
   updateUser(id) {
     //Update user role, hiding the super account
-    this.dbservices.usersUpdate(id, this.userRoleChange).subscribe((data)=> {
-      this.users = data;
+    if(this.userRoleChange == "") {
+      let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
+      error.innerText = "Role not selected";
       
-      if (this.users[0].username == "super") {
-        this.users.shift();
-      }
-    });
+    } else {
+      this.dbservices.usersUpdate(id, this.userRoleChange).subscribe((data)=> {
+        this.users = data;
+        
+        if (this.users[0].username == "super") {
+          this.users.shift();
+        }
+      });
+
+    }
+
 
   }
 

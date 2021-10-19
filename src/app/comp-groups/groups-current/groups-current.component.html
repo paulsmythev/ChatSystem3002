@@ -56,9 +56,11 @@
                   <br>
                   <button type="button" class="btn btn-secondary" (click)="joinChat(groupsList._id)">Join Chat</button>
 
-                  <div class="d-flex justify-content-center mt-3 login_container">
-                    <button type="submit" name="button" class="btn btn-link"(click)="deleteGroup(groupsList._id)">Delete Group</button>
-                  </div>
+                  <ng-template [ngIf]="hideFunctions">
+                    <div class="d-flex justify-content-center mt-3 login_container">
+                      <button type="submit" name="button" class="btn btn-link"(click)="deleteGroup(groupsList._id)">Delete Group</button>
+                    </div>
+                </ng-template>
 
               </div>
             </div>

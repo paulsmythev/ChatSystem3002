@@ -18,6 +18,7 @@ export class GroupsCurrentComponent implements OnInit {
   channel_id:number = 0;
 
   menuDisplay:boolean = true;
+  hideFunctions:boolean = true;
 
   ngOnInit(): void {
     //clear error handling
@@ -83,7 +84,13 @@ export class GroupsCurrentComponent implements OnInit {
 
   joinChat(group_id) {
     //Creates the route for the chat interface
-    this.router.navigateByUrl("/chat/read/" + group_id + "/" +  this.channel_id);
+    if (this.channel_id == 0) {
+      let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
+      error.innerText = "Please select a channel";
+    } else {
+      this.router.navigateByUrl("/chat/read/" + group_id + "/" +  this.channel_id);
+
+    }
 
   }
 
@@ -95,6 +102,7 @@ export class GroupsCurrentComponent implements OnInit {
 
       } else if (data[0].role == "Group Assistant" || data[0].role == "User") {
         this.menuDisplay = false;
+        this.hideFunctions = false;
         
       }
     });
