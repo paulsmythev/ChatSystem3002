@@ -109,7 +109,7 @@ export class DatabaseService {
   //Chat
 
   chatRead(group_id, channel_id) {
-    let chatPass = {"group_id": group_id,"channel_id": channel_id}
+    let chatPass = {"group_id": group_id,"channel_id": channel_id};
     return this.http.post<any>("http://localhost:3000/api/chat-read", chatPass);
   }
 

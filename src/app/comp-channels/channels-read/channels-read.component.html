@@ -26,7 +26,7 @@
       <div class="d-flex justify-content-center feedback" id="good"></div>
       <div class="d-flex justify-content-center feedback" id="bad"></div>
 
-      <div *ngFor="let channelsList of channels">
+      <div *ngFor="let channelsList of chanUsers">
         <!------ Card Start -------->
         <div class="text-center" id="groupshow">
           <div class="card green">
@@ -41,7 +41,7 @@
             <div class="general"><br>
               <h1>{{channelsList.name | uppercase}}</h1>
               <p>Description:<br>{{channelsList.description}}</p>
-              <p>Parent Group: {{channelsList.group_id}}</p>
+              <p>Parent Group: {{channelsList.groupName  | uppercase}}</p>
 
               <div class="d-flex justify-content-center mt-3 login_container">
                 <button type="submit" name="button" class="btn btn-secondary" (click)="chatRoom(channelsList.group_id, channelsList._id)">Chat Room</button>
@@ -50,6 +50,14 @@
               <div class="d-flex justify-content-center mt-3 login_container">
                 <button type="submit" name="button" class="btn btn-secondary" (click)="deleteGroup(channelsList._id)">Delete Channel</button>
               </div>
+
+              <hr>
+
+              <div class="form-group">
+                <label for="exampleFormControlSelect1">Current Users</label>
+                <select class="form-control" id="dropSize">
+                  <option *ngFor="let users of channelsList.listUsers" value="{{users.user_id}}">{{users.username | uppercase}}</option>
+                </select>
 
             </div>
           </div>

@@ -12,7 +12,7 @@ export class ChannelsCurrentComponent implements OnInit {
 
   constructor(private router: Router, private dbservices:DatabaseService) { }
 
-  channels:Channels[] = [];
+  chanUsers = new Array();
 
   channel_id:number = 0;
 
@@ -31,6 +31,8 @@ export class ChannelsCurrentComponent implements OnInit {
     let good:HTMLHeadingElement = document.getElementById("good") as HTMLHeadingElement;
     good.innerText = "";
 
+    console.log(this.chanUsers);
+
     //populate page data
     this.pageDisplay();
 
@@ -48,28 +50,18 @@ export class ChannelsCurrentComponent implements OnInit {
       }
   
     });
+    
   }
 
   channelsGroups(array) {
-    try {
-      this.dbservices.channelsOne(array.group_id).subscribe((data)=>{
-        for (let i = 0; i < data.length; i++) {
-          this.channels.push(data[i]);
+    this.dbservices.groupUsers(array.group_id).subscribe((dataP)=>{
+      this.dbservices.channelsOne(array.group_id).subscribe((dataC)=>{
+        for (let i = 0; i < dataC.length; i++) {
+          this.chanUsers.push({"channel_id": dataC[i]._id,"createdBy_id": dataC[i].createdBy_id, "description": dataC[i].description, "groupPicture_id": dataC[i].groupPicture_id, "group_id": dataC[i].group_id, "channel_name": dataC[i].name, "group_name": array.name, "user_id": array.user_id, "username": array.username, "userList": dataP});
         }
+        
       });
-    } catch {
-      
-    }
-
-  }
-
-  leaveChannel(channels_id) {
-    //Deletes the channel
-    this.dbservices.channelsDelete(channels_id).subscribe((data)=> {
-      this.channels = [];
-      this.pageDisplay();
-      
-    })
+    });
   }
 
   joinChat(group_id, channel_id) {
