@@ -8,20 +8,20 @@ The majority of the project was developed using local repository’s that were p
 
 | Branch | Description |
 | :----: | :----:      | 
-| master |  |
-| additional_sockets |  |
-| image_uploading |  |
-| error_handling |  |
-| chat_sockets |  |
-| permissions |  |
-| database_corrections |  |
-| channels |  |
-| users |  |
-| authentication |  |
-| app_structure |  |
-| fresh_install |  |
-| error_checking |  |
-| preparing_submission |  |
+| master | Github’s default branch |
+| additional_sockets | Corrections to earlier branch "chat_sockets" |
+| image_uploading | Implement image upload for new users and for chat |
+| error_handling | Majority of issues handled in user friendly way |
+| chat_sockets | Implement chat room for all channels |
+| permissions | Security for client side and some server side functions |
+| database_corrections | Majority of Mongodb implemented here |
+| channels | New Channels and managing current channels |
+| users | Creation of new users and displaying and managing them |
+| authentication | Handle all login user and logout permissions |
+| app_structure | Setup folder structure for components, classes and services |
+| fresh_install | Blank angular installation |
+| error_checking | E2E Protractor implantation |
+| preparing_submission | Tidying up code and other issues before submission |
 | spare |  |
 
 ## Angular E2E Testing Using Protractor
