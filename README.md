@@ -20,8 +20,8 @@ The majority of the project was developed using local repository’s that were p
 | authentication |  |
 | app_structure |  |
 | fresh_install |  |
-| spare |  |
-| spare |  |
+| error_checking |  |
+| preparing_submission |  |
 | spare |  |
 
 ## Angular E2E Testing Using Protractor
