@@ -1,6 +1,7 @@
 # Chat System 3002 <img src="src/assets/images/5027877_bubble_chat_communication_interaction_online%20chat_icon.png" width="64px" height="64px" />
 
-Paul Smyth S5012116 - 3813ICT Trimester 2 2021 - Assignment Phase 2
+Paul Smyth S5012116 - 3813ICT Trimester 2 2021 - Assignment Phase 2<br>
+https://github.com/paulsmythev/ChatSystem3002.git
 
 ## Git Repository 
 
@@ -37,7 +38,7 @@ The data structures are represented within the Mongo database collections access
 - Users – stores all users for the project and prevents adding a new user that has the same username. It also contains the role the user has within the site.
 <br>"_id" : number, "email" : string, "username" : string, "password" : string, "role" : string, "profilepicture" : string
 - Groups – simply contains the basics with relational data store groups_users.
-<br>"_id" : number, "name" : string, "createdBy_id" : string, "description" : string, "groupPicture_id" : string****
+<br>"_id" : number, "name" : string, "createdBy_id" : string, "description" : string, "groupPicture_id" : string
 - Channels – stores the basics of name, description and the group its associated with.
 <br>"_id" : 1, "group_id" : number, "name" : string, "createdBy_id" : string, "description" : string, "groupPicture_id" : string
 - Groups_users – creates the relationship link between groups and users, once you know what group a user is apart of then the channels can be easily identified.
@@ -49,7 +50,7 @@ The data structures are represented within the Mongo database collections access
 
 For the project to run correctly it uses several REST API features allowing for the client and server to communicate through the use of JSON and http methods. Below is a breakdown of each route used and brief description on how it works.
 
-| Rotue      | Parameters | Returned Values     | Description     |
+| Route      | Parameters | Returned Values     | Description     |
 | :----:       | :----:       | :----:          |:----:            |
 | api/auth-login (GET) | Username and password as class object | JSON {"userLogin":true} | Compares credentials to DB |
 | api/auth-logout (GET) | None  | JSON {"loggedOut":true} | Removes logged in user from DB |
