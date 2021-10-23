@@ -23,7 +23,6 @@ The majority of the project was developed using local repository’s that were p
 | error_checking | E2E Protractor implantation |
 | preparing_submission | Tidying up code and other issues before submission |
 
-
 ## Angular E2E Testing Using Protractor
 
 To ensure that the application correctly works Protractor end to end testing has been setup in the parent directory under "e2e". four tests have been created to test the forms submission of data, check the API calls are getting a response, the components and rotes for the client side respond with the correct page title and the main authentication of login, logout and redirection on successful login.
@@ -35,15 +34,15 @@ The data structures are represented within the Mongo database collections access
 
 - Current_user – stores the current logged in user, accessible to both server and client.
 <br>"_id" : number, "email" : string, "username" : string, "password" : string, "role" : string, "profilepicture" : string
-<br>- Users – stores all users for the project and prevents adding a new user that has the same username. It also contains the role the user has within the site.
+- Users – stores all users for the project and prevents adding a new user that has the same username. It also contains the role the user has within the site.
 <br>"_id" : number, "email" : string, "username" : string, "password" : string, "role" : string, "profilepicture" : string
-<br>- Groups – simply contains the basics with relational data store groups_users.
+- Groups – simply contains the basics with relational data store groups_users.
 <br>"_id" : number, "name" : string, "createdBy_id" : string, "description" : string, "groupPicture_id" : string****
-<br>- Channels – stores the basics of name, description and the group its associated with.<br>
+- Channels – stores the basics of name, description and the group its associated with.
 <br>"_id" : 1, "group_id" : number, "name" : string, "createdBy_id" : string, "description" : string, "groupPicture_id" : string
-<br>- Groups_users – creates the relationship link between groups and users, once you know what group a user is apart of then the channels can be easily identified.
+- Groups_users – creates the relationship link between groups and users, once you know what group a user is apart of then the channels can be easily identified.
 <br>"_id" : ObjectId, "group_id" : number, "user_id" : number, "username" : string, "name" : string
-<br>- Chatlogs – contains information about the group and channel a one to many relationship within containing the individual chat logs.
+- Chatlogs – contains information about the group and channel a one to many relationship within containing the individual chat logs.
 <br>"_id" : ObjectId, "group_id" : number, "group_name" : string, "channel_id" : number, "channel_name" : sting, "chatlog" : [{"log_id" : 1, "user_id" : 1, "username" : string, "timestamp" : timestamp, "message" : string, "profilepicture" : string, "imageStatus" : boolean, "imageName" : string}]
 
 ## REST API
