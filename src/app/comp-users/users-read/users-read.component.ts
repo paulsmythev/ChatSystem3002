@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Users } from "../../classes/users/users";
 import { DatabaseService } from "../../services/database.service";
 import { Router } from '@angular/router';
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-users-read',
@@ -20,7 +21,9 @@ export class UsersReadComponent implements OnInit {
 
   menuDisplay:boolean = true;
 
-  constructor(private router: Router, private dbservices:DatabaseService) { }
+  constructor(private router: Router, private dbservices:DatabaseService, private titleService:Title) { 
+    this.titleService.setTitle("Chat System 3002 | Users - Read");
+  }
 
   //Display all users in database
 

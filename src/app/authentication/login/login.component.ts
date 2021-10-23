@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DatabaseService } from "../../services/database.service";
 import { Authentication } from 'src/app/classes/authentication/authentication';
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-login',
@@ -10,8 +11,10 @@ import { Authentication } from 'src/app/classes/authentication/authentication';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router, private dbservices:DatabaseService) { }
-
+  constructor(private router: Router, private dbservices:DatabaseService, private titleService:Title) { 
+    this.titleService.setTitle("Chat System 3002 | Login");
+  }
+  
   inputIdentification:string = "";
   inputPassword:string = "";
 

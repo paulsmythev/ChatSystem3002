@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Users } from "../../classes/users/users";
 import { DatabaseService } from "../../services/database.service";
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-users-current',
@@ -10,7 +11,9 @@ import { DatabaseService } from "../../services/database.service";
 })
 export class UsersCurrentComponent implements OnInit {
 
-  constructor(private router: Router, private dbservices:DatabaseService) { }
+  constructor(private router: Router, private dbservices:DatabaseService, private titleService:Title) { 
+    this.titleService.setTitle("Chat System 3002 | Users - Current");
+  }
 
   //Displays the currently logged in users details
 

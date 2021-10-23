@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from "../../services/database.service";
 import { Router } from '@angular/router';
 import { Channels } from 'src/app/classes/channels/channels';
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-channels-read',
@@ -10,7 +11,9 @@ import { Channels } from 'src/app/classes/channels/channels';
 })
 export class ChannelsReadComponent implements OnInit {
 
-  constructor(private router: Router, private dbservices:DatabaseService) { }
+  constructor(private router: Router, private dbservices:DatabaseService, private titleService:Title) { 
+    this.titleService.setTitle("Chat System 3002 | Channels - Read");
+  }
 
   chanUsers = new Array();
 

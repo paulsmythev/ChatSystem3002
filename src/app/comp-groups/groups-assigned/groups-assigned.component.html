@@ -38,12 +38,12 @@
                 <h3>Add Users to Group</h3>
 
                 <label for="exampleFormControlSelect1">Select Group</label>
-                <select class="form-select" aria-label="Default select example" [(ngModel)]="inputGroup_id">
+                <select class="form-select" aria-label="Default select example" name="inputGroup" [(ngModel)]="inputGroup_id">
                     <option *ngFor="let groupslist of groups" value="{{groupslist._id}}">{{groupslist.name}}</option>
                 </select>
                 <br>
                 <label for="exampleFormControlSelect1">Select User</label>
-                <select class="form-select" aria-label="Default select example" [(ngModel)]="inputUser_id">
+                <select class="form-select" aria-label="Default select example" name="inputUser" [(ngModel)]="inputUser_id">
                     <option *ngFor="let userslist of users" value="{{userslist._id}}">{{userslist.username}}</option>
                 </select>
                         

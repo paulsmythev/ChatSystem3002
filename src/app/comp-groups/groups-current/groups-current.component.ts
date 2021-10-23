@@ -3,6 +3,7 @@ import { Groups } from "../../classes/groups/groups";
 import { DatabaseService } from "../../services/database.service";
 import { Router } from '@angular/router';
 import { GroupUser } from 'src/app/classes/groups_users/group-user';
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-groups-current',
@@ -11,7 +12,9 @@ import { GroupUser } from 'src/app/classes/groups_users/group-user';
 })
 export class GroupsCurrentComponent implements OnInit {
 
-  constructor(private router: Router, private dbservices:DatabaseService) { }
+  constructor(private router: Router, private dbservices:DatabaseService, private titleService:Title) { 
+    this.titleService.setTitle("Chat System 3002 | Groups - Current");
+  }
 
   groupsChannels = new Array();
 

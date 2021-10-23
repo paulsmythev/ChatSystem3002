@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Group } from "../../classes/groups/groups";
 import { DatabaseService } from "../../services/database.service";
 import { Router } from '@angular/router';
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-groups-create',
@@ -10,7 +11,9 @@ import { Router } from '@angular/router';
 })
 export class GroupsCreateComponent implements OnInit {
 
-  constructor(private router: Router, private dbservices:DatabaseService) { }
+  constructor(private router: Router, private dbservices:DatabaseService, private titleService:Title) { 
+    this.titleService.setTitle("Chat System 3002 | Groups - Create");
+  }
 
   //Creates a new groups
 

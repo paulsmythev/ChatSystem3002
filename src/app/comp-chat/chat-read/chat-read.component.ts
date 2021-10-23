@@ -6,6 +6,7 @@ import { ChatMessages } from 'src/app/classes/chatMessages/chat-messages';
 import { ChatMessage } from 'src/app/classes/chatMessages/chat-messages';
 import { ImageService } from 'src/app/services/image.service';
 import { Router } from '@angular/router';
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-chat-read',
@@ -14,7 +15,9 @@ import { Router } from '@angular/router';
 })
 export class ChatReadComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private socketService:SocketService, private dbservices:DatabaseService, private imageServices:ImageService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private socketService:SocketService, private dbservices:DatabaseService, private imageServices:ImageService, private router: Router, private titleService:Title) { 
+    this.titleService.setTitle("Chat System 3002 | Chat Room");
+  }
 
   messagecontent:string = "";
   messages:string[] = [];

@@ -3,6 +3,7 @@ import { DatabaseService } from "../../services/database.service";
 import { Router } from '@angular/router';
 import { Channel } from 'src/app/classes/channels/channels';
 import { Groups } from 'src/app/classes/groups/groups';
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-channels-create',
@@ -23,7 +24,9 @@ export class ChannelsCreateComponent implements OnInit {
 
   menuDisplay:boolean = true;
 
-  constructor(private router: Router, private dbservices:DatabaseService) { }
+  constructor(private router: Router, private dbservices:DatabaseService, private titleService:Title) { 
+    this.titleService.setTitle("Chat System 3002 | Channels - Create");
+  }
 
   ngOnInit(): void {
 
@@ -73,11 +76,11 @@ export class ChannelsCreateComponent implements OnInit {
       this.dbservices.channelsCreate(this.newChannel).subscribe((data)=> {
         if (data.channelExists == true) {
           let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
-          error.innerText = "Group already exists, try a new one";
+          error.innerText = "Channel already exists, try a new one";
 
         } else if (data.acknowledged == true) {
           let good:HTMLHeadingElement = document.getElementById("good") as HTMLHeadingElement;
-          good.innerText = "Group Created";
+          good.innerText = "Channel Created";
 
           this.generateChatlog(group_number, data.insertedId);
 

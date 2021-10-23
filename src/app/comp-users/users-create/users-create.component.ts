@@ -3,6 +3,7 @@ import { User } from "../../classes/users/users";
 import { DatabaseService } from "../../services/database.service";
 import { Router } from '@angular/router';
 import { ImageService } from 'src/app/services/image.service';
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-users-create',
@@ -27,7 +28,9 @@ export class UsersCreateComponent implements OnInit {
 
   majorError:boolean = false;
 
-  constructor(private router: Router, private dbservices:DatabaseService, private imageServices:ImageService) { }
+  constructor(private router: Router, private dbservices:DatabaseService, private imageServices:ImageService, private titleService:Title) { 
+    this.titleService.setTitle("Chat System 3002 | Users - Create");
+  }
 
   ngOnInit(): void {
 

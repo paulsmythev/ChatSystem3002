@@ -24,6 +24,11 @@ The majority of the project was developed using local repository’s that were p
 | spare |  |
 | spare |  |
 
+## Angular E@E Testing Using Protractor
+
+To ensure that the application correctly works Protractor end to end testing has been setup in the parent directory under "e2e". four tests have been created to test the forms submission of data, check the API calls are getting a response, the components and rotes for the client side respond with the correct page title and the main authentication of login, logout and redirection on successful login.
+All tests will begin on running "npm run e2e" in cli from the parent directory and require the removal of test data before running again to avoid error on creating the same users, groups, and channels. Refresh of database data corrects these issues.
+
 ## Data Structures
 
 The data structures are represented within the Mongo database collections accessed on the  server side. In total there are 6 listed below detailing their purpose,
