@@ -105,7 +105,7 @@ Classes featured predominantly thought-out project and are organised into a clas
 ## Installation Instructions
 
 Mongo Database located in parent directory under "installation"
-<br>
+<br><br>
 Necessary node packages 
 1. npm install
 2. npm install bootstrap --save
