@@ -102,6 +102,13 @@ Classes featured predominantly thought-out project and are organised into a clas
 | channels/read | Depending on user role, see all channels and allow for deletion. |
 | chat/read/:group/:channel | Available to all registered users, takes the parameters of the "group_id" and the "channel_id" which in return loads the correct chat room and its history. |
 
+## Installation Instructions
+
+Mongo Database located in parent directory under "installation"
+- [x] Write the press release
+- [ ] Update the website
+- [ ] Contact the media
+
 ## Credits
 
 Images and icons sauced from https://www.iconfinder.com/ under free for commercial use.<br>
