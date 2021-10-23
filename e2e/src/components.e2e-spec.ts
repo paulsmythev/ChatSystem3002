@@ -53,7 +53,6 @@ describe("Checking Components and Routes", () => {
         expect(browser.getTitle()).toContain("Chat System 3002 | Users - Current");
         browser.get("/users/read");
         expect(browser.getTitle()).toContain("Chat System 3002 | Users - Read");
-        page.logout();
     });
 
 });

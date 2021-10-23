@@ -27,9 +27,11 @@ describe("Authentication Testing", () => {
     });
 
     it("Authentication Success", ()=>{
+        page.logout();
         page.navigateTo();
         page.fillCredentials(correctCredentias);
         expect(browser.getTitle()).toContain("Chat System 3002 | Groups - Current");
+        //browser.driver.sleep(1000);
     });
 
     it("Authentication Logout Success", ()=>{

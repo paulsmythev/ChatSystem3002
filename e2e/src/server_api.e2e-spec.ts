@@ -2,7 +2,6 @@ import { browser, by, element } from "protractor";
 var Request = require("request");
 
 describe("Authentication - Server Side API Calls",function(){
-    browser.ignoreSynchronization = true;
 
     it("authLogin", ()=>{
         Request.put({
@@ -33,7 +32,6 @@ describe("Authentication - Server Side API Calls",function(){
 });
 
 describe("Users - Server Side API Calls",function(){
-    browser.ignoreSynchronization = true;
 
     it("usersCreate", ()=>{
         Request.put({
@@ -94,7 +92,6 @@ describe("Users - Server Side API Calls",function(){
 });
 
 describe("Channels - Server Side API Calls",function(){
-    browser.ignoreSynchronization = true;
 
     it("channelsCreate", ()=>{
         Request.put({
@@ -161,7 +158,6 @@ describe("Channels - Server Side API Calls",function(){
 });
 
 describe("Groups - Server Side API Calls",function(){
-    browser.ignoreSynchronization = true;
 
     it("groupsRead", ()=>{
         Request.put({
@@ -241,7 +237,6 @@ describe("Groups - Server Side API Calls",function(){
 });
 
 describe("Chat - Server Side API Calls",function(){
-    browser.ignoreSynchronization = true;
 
     it("chatRead", ()=>{
         Request.put({

@@ -24,7 +24,7 @@ The majority of the project was developed using local repository’s that were p
 | spare |  |
 | spare |  |
 
-## Angular E@E Testing Using Protractor
+## Angular E2E Testing Using Protractor
 
 To ensure that the application correctly works Protractor end to end testing has been setup in the parent directory under "e2e". four tests have been created to test the forms submission of data, check the API calls are getting a response, the components and rotes for the client side respond with the correct page title and the main authentication of login, logout and redirection on successful login.
 All tests will begin on running "npm run e2e" in cli from the parent directory and require the removal of test data before running again to avoid error on creating the same users, groups, and channels. Refresh of database data corrects these issues.
@@ -102,15 +102,9 @@ Classes featured predominantly thought-out project and are organised into a clas
 | channels/read | Depending on user role, see all channels and allow for deletion. |
 | chat/read/:group/:channel | Available to all registered users, takes the parameters of the "group_id" and the "channel_id" which in return loads the correct chat room and its history. |
 
-
-
 ## Credits
 
 Images and icons sauced from https://www.iconfinder.com/ under free for commercial use.<br>
 Layouts generated from ideas from https://www.bootdey.com/snippets/view/Css-Player-User-Cards 
 
-<<<<<<< HEAD
 Paul Smyth - S5012116
-=======
-Paul Smyth - S5012116
->>>>>>> c2780cba1670f8a727a9bc3266085c04d035c256
