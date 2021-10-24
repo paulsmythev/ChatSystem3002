@@ -1,5 +1,9 @@
 use chatdb
 
+db.dropDatabase()
+
+use chatdb
+
 db.createCollection('current_user')
 
 db.users.insertMany([
@@ -116,12 +120,12 @@ db.groups_users.insertMany([
 	{"group_id":1, "user_id": 5, "username": "Margo", "name": "Cats"},
 	{"group_id":2,  "user_id": 6, "username": "Thore", "name": "Dogs"},
 	{"group_id":3,  "user_id": 7, "username": "Galya", "name": "Cars"},
-	{"group_id":4,  "user_id": 8, "username": "Dalia", "name": ""},
+	{"group_id":4,  "user_id": 8, "username": "Dalia", "name": "Trucks"},
 	{"group_id":5,  "user_id": 9, "username": "Khaleel", "name": "Aircraft"},
 	{"group_id":6,  "user_id": 10, "username": "Kuno", "name": "Trains"},
 	{"group_id":7,  "user_id": 11, "username": "Troy", "name": "Boats"},
 	{"group_id":8,  "user_id": 12, "username": "Ebbe", "name": "Music"},
-	{"group_id":1, "user_id": 13, "username": "Jennifer", "name": "Music"},
+	{"group_id":1, "user_id": 13, "username": "Jennifer", "name": "Cats"},
 	
 	{"group_id":1, "user_id": 14, "username": "Domonic", "name": "Cats"},
 	{"group_id":1, "user_id": 15, "username": "Raisa", "name": "Cats"},
