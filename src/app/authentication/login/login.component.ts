@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
       error.innerText = "Missing Information";
 
     } else {
-      this.newLogin = new Authentication(this.inputIdentification, this.inputPassword)
+      this.newLogin = new Authentication(this.inputIdentification.toLowerCase(), this.inputPassword.toLowerCase())
 
       this.dbservices.authLogin(this.newLogin).subscribe((data)=>{
         

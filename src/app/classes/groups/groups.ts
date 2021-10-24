@@ -6,6 +6,7 @@ export class Groups {
         public createdBy_id:string,
         public description:string,
         public groupPicture_id:string,
+        public group_id:number
     ) {}
 }
 //Used for adding new groups

@@ -75,7 +75,7 @@ describe("Processing New Channels", () => {
 
     const newChannel = {
         name: "E2E Testing",
-        inputGroup_id: "E2E Testing",
+        inputGroup_id: "Cats",
         description: "E2E Testing",
     }
 

@@ -34,8 +34,6 @@ export class ChannelsCurrentComponent implements OnInit {
     let good:HTMLHeadingElement = document.getElementById("good") as HTMLHeadingElement;
     good.innerText = "";
 
-    console.log(this.chanUsers);
-
     //populate page data
     this.pageDisplay();
 

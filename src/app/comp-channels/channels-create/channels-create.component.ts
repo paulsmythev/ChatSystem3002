@@ -40,10 +40,16 @@ export class ChannelsCreateComponent implements OnInit {
     good.innerText = "";
 
     //Populates drop down list
-    this.dbservices.groupsRead().subscribe((data)=> {
+    this.dbservices.groupsCurrent().subscribe((data)=> {
+      this.groups = data;
+      
+    });
+
+    /*this.dbservices.groupsRead().subscribe((data)=> {
       this.groups = data;  
 
-    });
+    });*/
+    
     
   }
 
@@ -51,6 +57,8 @@ export class ChannelsCreateComponent implements OnInit {
     event.preventDefault();
 
     let group_number = Number(this.inputGroup_id);
+
+    console.log(this.inputGroup_id);
 
     //clear errors
     let error:HTMLHeadingElement = document.getElementById("bad") as HTMLHeadingElement;
