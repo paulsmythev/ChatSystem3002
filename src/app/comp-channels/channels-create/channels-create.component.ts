@@ -40,15 +40,10 @@ export class ChannelsCreateComponent implements OnInit {
     good.innerText = "";
 
     //Populates drop down list
-    this.dbservices.groupsCurrent().subscribe((data)=> {
-      this.groups = data;
-      
-    });
-
-    /*this.dbservices.groupsRead().subscribe((data)=> {
+    this.dbservices.groupsRead().subscribe((data)=> {
       this.groups = data;  
 
-    });*/
+    });
     
     
   }

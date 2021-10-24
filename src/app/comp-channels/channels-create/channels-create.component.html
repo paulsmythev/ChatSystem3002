@@ -52,7 +52,7 @@
                       <span class="input-group-text"><img src="./assets/images/728934_enter_login_right_arrow_forward_icon.png" width="28px" height="28px" alt="Email Login"/><i class="fas fa-key"></i></span>
                     </div>
                     <select class="form-select" aria-label="Default select example" name="inputGroup_id" [(ngModel)]="inputGroup_id">
-                      <option *ngFor="let groupslist of groups" value="{{groupslist.group_id}}">{{groupslist.name}}</option>
+                      <option *ngFor="let groupslist of groups" value="{{groupslist._id}}">{{groupslist.name}}</option>
                   </select>
                 </div>
                 
