@@ -15,7 +15,7 @@ export class UsersCreateComponent implements OnInit {
   inputEmail:string = "";
   inputUsername:string = "";
   inputPassword:string = "";
-  role:string = "user";
+  role:string = "User";
   inputImageFile:string = "5.png";
 
   //file handling

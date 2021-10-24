@@ -20,7 +20,7 @@ export class LogoutComponent implements OnInit {
     this.router.navigateByUrl("/login");
 
     this.dbservices.authLogout().subscribe((data)=>{
-      console.log(data)
+      
     });
   }
 

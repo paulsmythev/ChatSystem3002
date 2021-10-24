@@ -154,8 +154,11 @@ export class ChatReadComponent implements OnInit {
 
   chatHistory() {
     this.dbservices.chatRead(this.group_id, this.channel_id).subscribe((data)=>{
-      this.ChatMessages = data[0].chatlog;
-
+      try {
+        this.ChatMessages = data[0].chatlog;
+      } catch {
+        this.router.navigateByUrl("/groups/current");
+      }
     });
   }
 

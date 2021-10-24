@@ -1,0 +1,13 @@
+Necessary node packages:
+1. npm install
+2. npm install bootstrap --save
+3. npm install mongodb --save
+4. npm install express --save
+5. npm install body-parser --save
+6. npm install cors --save
+7. npm install socket.io-client --save
+8. ng generate service socket
+9. npm install formidable --save
+10. npm i process
+11. npm install --save-dev jasmine-spec-reporter ts-node protractor
+12. npx webdriver-manager update

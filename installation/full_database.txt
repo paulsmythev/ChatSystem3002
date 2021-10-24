@@ -1,9 +1,5 @@
 use chatdb
 
-db.dropDatabase()
-
-use chatdb
-
 db.createCollection('current_user')
 
 db.users.insertMany([
